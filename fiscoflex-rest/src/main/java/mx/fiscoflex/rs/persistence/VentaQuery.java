@@ -14,7 +14,7 @@ public class VentaQuery implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@PersistenceContext(name = "SIAC")
+	@PersistenceContext(name = "fiscoflexpu")
 	private EntityManager entityManager;
 
 	public void crearVenta(VentaEntity ventaEntity) {

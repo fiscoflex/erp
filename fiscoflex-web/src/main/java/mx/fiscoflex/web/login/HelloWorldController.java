@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelloWorldController {
+	
+	@RequestMapping("/index")
+	public String index(Model model){
+		return "index";
+	}
 
 	@RequestMapping("/hello")
 	public String hello(
@@ -18,5 +23,4 @@ public class HelloWorldController {
 		return "helloworld";
 
 	}
-
 }

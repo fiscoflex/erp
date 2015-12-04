@@ -11,7 +11,7 @@ import mx.fiscoflex.rs.persistence.CuentaContableEntity;
 public class CuentaContableQuery implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@PersistenceContext(name = "SIAC")
+	@PersistenceContext(name = "fiscoflexpu")
 	private EntityManager entityManager;
 
 

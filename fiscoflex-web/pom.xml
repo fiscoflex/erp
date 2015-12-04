@@ -14,7 +14,7 @@
 	<description>Aplicacion Web para la Aplicacion Web Fiscoflex</description>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
@@ -36,9 +36,5 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
-
 	</dependencies>
-
-
-
 </project>

@@ -12,7 +12,7 @@ public class ConceptoQuery implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@PersistenceContext(name = "SIAC")
+	@PersistenceContext(name = "fiscoflexpu")
 	private EntityManager entityManager;
 
 	public void crearConcepto(ConceptoEntity conceptoEntity) {
