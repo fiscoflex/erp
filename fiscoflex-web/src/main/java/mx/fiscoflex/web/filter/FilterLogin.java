@@ -44,28 +44,12 @@ public class FilterLogin implements Filter {
 		if(httpRequest.getRequestURI().equals(httpRequest.getContextPath() + "/login")){
 			System.out.println("Página Login");
 			if(fisco != null){
-				System.out.println("Usuario Logueado");
+				System.out.println("Usuario Loigueado");
 				httpResponse.sendRedirect(httpRequest.getContextPath() + "/index");
 			}else{
-				if(fisco == null && (httpRequest.getRequestURI()) != (httpRequest.getContextPath() + "/login")){
-					System.out.println("Usuario en sesión pero se ha perdido el API");
-					System.out.println("Obteniendo datos de sesión");
-					String cookieId = getCookieValue(httpRequest, ConfiguracionConst.COOKIE_NAME);
-					System.out.println("CookieId ::" + cookieId);
-					if(cookieId != null){
-						System.out.println("Obteniendo Cookie" + cookieId);
-						FiscoFlex fiscoFlex = new FiscoFlex();
-						httpSession.setAttribute(ConfiguracionConst.API_NAME, fiscoFlex);
-						setCookie(httpResponse, ConfiguracionConst.COOKIE_NAME, cookieId, 30);
-					}else{
-						System.out.println("Redireccionando");
-						httpResponse.setHeader("/WEB/views/login.jsp", httpRequest.getContextPath() + "/login");
-					}		
-				}else{
-					System.out.println("La API no esta en sesión");
+					System.out.println("No hacer nada");
 					chain.doFilter(request, response);
 					return;
-				}
 			}
 		}else{
 			if(fisco != null){
@@ -73,9 +57,23 @@ public class FilterLogin implements Filter {
 				chain.doFilter(request, response);
 				return;
 			}else{
-				System.out.println("Usuario No Logueado");
-				httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
+				if(fisco == null){
+				System.out.println("Usuario en sesión pero se ha perdido el API");
+				System.out.println("Obteniendo datos de sesión");
+				String cookieId = getCookieValue(httpRequest, ConfiguracionConst.COOKIE_NAME);
+				System.out.println("CookieId ::" + cookieId);
+				if(cookieId != null){
+					System.out.println("Obteniendo Cookie" + cookieId);
+					FiscoFlex fiscoFlex = new FiscoFlex();
+					httpSession.setAttribute(ConfiguracionConst.API_NAME, fiscoFlex);
+					setCookie(httpResponse, ConfiguracionConst.COOKIE_NAME, cookieId, 30);
+				}else{
+					System.out.println("Redireccionando");
+					//httpResponse.setHeader("/WEB/views/login.jsp", httpRequest.getContextPath() + "/login");
+					httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
+				}		
 			}
+		}
 		}
 		chain.doFilter(request, response);
 		/*
