@@ -15,22 +15,19 @@ import javax.servlet.http.HttpSession;
 
 public class FilterLogin implements Filter {
 
+
 	@Override
 	public void init(FilterConfig init) throws ServletException {
 		System.out.println("Init Filtro uno iniciado");
+		
 	}
-
-	@Override
-	public void destroy() {
-	}
-
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		HttpSession httpSession = httpRequest.getSession();
+			
 		String[] recursos = { "/bootstrap", "/dist", "/plugins" };
 		String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 		for (String array : recursos) {
@@ -40,8 +37,49 @@ public class FilterLogin implements Filter {
 				return;
 			}
 		}
+		HttpSession httpSession = httpRequest.getSession();	
 		FiscoFlex fisco = (FiscoFlex) httpSession.getAttribute(ConfiguracionConst.API_NAME);
-		System.out.println("FISCOFLEX SESSION ::" + fisco);
+		System.out.println("FISCOFLEX SESSION ::" + fisco);		
+		
+		if(httpRequest.getRequestURI().equals(httpRequest.getContextPath() + "/login")){
+			System.out.println("Página Login");
+			if(fisco != null){
+				System.out.println("Usuario Logueado");
+				httpResponse.sendRedirect(httpRequest.getContextPath() + "/index");
+			}else{
+				if(fisco == null && (httpRequest.getRequestURI()) != (httpRequest.getContextPath() + "/login")){
+					System.out.println("Usuario en sesión pero se ha perdido el API");
+					System.out.println("Obteniendo datos de sesión");
+					String cookieId = getCookieValue(httpRequest, ConfiguracionConst.COOKIE_NAME);
+					System.out.println("CookieId ::" + cookieId);
+					if(cookieId != null){
+						System.out.println("Obteniendo Cookie" + cookieId);
+						FiscoFlex fiscoFlex = new FiscoFlex();
+						httpSession.setAttribute(ConfiguracionConst.API_NAME, fiscoFlex);
+						setCookie(httpResponse, ConfiguracionConst.COOKIE_NAME, cookieId, 30);
+					}else{
+						System.out.println("Redireccionando");
+						httpResponse.setHeader("/WEB/views/login.jsp", httpRequest.getContextPath() + "/login");
+					}		
+				}else{
+					System.out.println("La API no esta en sesión");
+					chain.doFilter(request, response);
+					return;
+				}
+			}
+		}else{
+			if(fisco != null){
+				System.out.println("Usuario Logueado en otra página");
+				chain.doFilter(request, response);
+				return;
+			}else{
+				System.out.println("Usuario No Logueado");
+				httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
+			}
+		}
+		chain.doFilter(request, response);
+		/*
+		
 		if (fisco == null) {
 			System.out.println("Obteniendo datos de sesión");
 			String cookieId = getCookieValue(httpRequest, ConfiguracionConst.COOKIE_NAME);
@@ -54,12 +92,17 @@ public class FilterLogin implements Filter {
 				setCookie(httpResponse, ConfiguracionConst.COOKIE_NAME, cookieId, 30);
 			} else {
 				System.out.println("Redireccionando");
-				httpResponse.setHeader("/jsp", httpRequest.getContextPath() + "/login");
+				httpResponse.setHeader("/WEB/views/login.jsp", httpRequest.getContextPath() + "/login");
 			}
 		} else {
-			System.out.println("API en sesión" + fisco);
+				if(httpRequest.getRequestURI().equals(httpRequest.getContextPath() + "/login")){
+					if(fisco != null){
+						httpResponse.sendRedirect(httpRequest.getContextPath() + "/index");
+					}
+				}
 		}
 		chain.doFilter(request, response);
+		*/
 	}
 
 	public String getCookieValue(HttpServletRequest request, String name) {
@@ -67,7 +110,7 @@ public class FilterLogin implements Filter {
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if (cookie != null && name.equals(cookie.getName())) {
-					System.out.println("Cookie :::" + cookie.getValue());
+					System.out.println("Arreglo Cookies :::" + cookie.getValue());
 					return cookie.getValue();
 				}
 			}
@@ -80,4 +123,10 @@ public class FilterLogin implements Filter {
 		cookie.setMaxAge(maxAge);
 		response.addCookie(cookie);
 	}
+	
+	@Override
+	public void destroy() {
+	}
+
+	
 }
