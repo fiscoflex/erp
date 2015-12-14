@@ -1,4 +1,4 @@
-package mx.fiscoflex.web.filter;
+package mx.fiscoflex.web.security;
 
 public class FiscoFlex {
 
@@ -10,7 +10,7 @@ public class FiscoFlex {
 		if(username.equals("admin") && password.equals("admin")){
 			return  "admin123456";
 		}else{
-			return "";
+			return null;
 		}
 	}
 	

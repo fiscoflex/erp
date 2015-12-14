@@ -1,6 +1,6 @@
 package mx.fiscoflex.api;
 
-public class LoginException extends RuntimeException{
+public class AutentificacionException extends RuntimeException{
 
 	/**
 	 * 

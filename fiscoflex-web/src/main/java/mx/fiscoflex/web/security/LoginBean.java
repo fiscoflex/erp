@@ -1,4 +1,4 @@
-package mx.fiscoflex.web.login;
+package mx.fiscoflex.web.security;
 
 public class LoginBean {
 	

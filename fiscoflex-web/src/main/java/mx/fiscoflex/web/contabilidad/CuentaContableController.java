@@ -1,4 +1,4 @@
-package mx.fiscoflex.web.conta;
+package mx.fiscoflex.web.contabilidad;
 
 public class CuentaContableController {
 

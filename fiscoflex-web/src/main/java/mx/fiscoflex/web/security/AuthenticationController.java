@@ -1,4 +1,4 @@
-package mx.fiscoflex.web.login;
+package mx.fiscoflex.web.security;
 
 import javax.security.auth.login.LoginException;
 

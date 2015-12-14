@@ -1,4 +1,4 @@
-package mx.fiscoflex.web.login;
+package mx.fiscoflex.web.security;
 
 import java.io.IOException;
 
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import mx.fiscoflex.web.filter.FiscoFlex;
-
 @Controller
 public class LoginController {
 
@@ -26,7 +24,7 @@ public class LoginController {
 		return model;
 	}
 
-	@RequestMapping(value = "/index", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("login") LoginBean login) {
 		ModelAndView model = null;
@@ -43,7 +41,9 @@ public class LoginController {
 			cookie.setMaxAge(1 * 30);
 			response.addCookie(cookie);
 		} else {
-			System.out.println("Claver errones");
+			model = new ModelAndView("login");
+			LoginBean loginBean = new LoginBean();
+			model.addObject("loginBean", loginBean);
 		}
 		return model;
 	}

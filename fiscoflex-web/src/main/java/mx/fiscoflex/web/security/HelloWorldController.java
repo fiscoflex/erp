@@ -1,4 +1,4 @@
-package mx.fiscoflex.web.login;
+package mx.fiscoflex.web.security;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

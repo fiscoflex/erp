@@ -1,4 +1,4 @@
-package mx.fiscoflex.web.filter;
+package mx.fiscoflex.web.security;
 
 public class ConfiguracionConst {
 

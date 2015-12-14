@@ -38,7 +38,7 @@
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
-			<form:form class="form-signin" method="post" action="index"
+			<form:form class="form-signin" method="post" action="login"
 				modelAttribute="loginBean">
 				<div class="form-group has-feedback">
 					<form:input id="username" name="username" path="username"
