@@ -22,7 +22,7 @@
 	</listener>
 	<filter>
 		<filter-name>FilterLogin</filter-name>
-		<filter-class>mx.fiscoflex.web.filter.FilterLogin</filter-class>
+		<filter-class>mx.fiscoflex.web.security.FilterLogin</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>FilterLogin</filter-name>
