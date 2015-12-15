@@ -8,58 +8,63 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
 
-	@RequestMapping(value = "/login")
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		ModelAndView model = new ModelAndView("login");
-		LoginBean loginBean = new LoginBean();
-		model.addObject("loginBean", loginBean);
-		return model;
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String login() {
+		return "login";
 	}
+	
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String home(@ModelAttribute(value = "login") LoginBean user, HttpServletResponse response,
+			HttpServletRequest request, Model model) {
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("login") LoginBean login) {
-		ModelAndView model = null;
 		FiscoFlex fiscoflex = new FiscoFlex();
-		String token = fiscoflex.obtenerToken(login.getUsername(), login.getPassword());
+		String token = fiscoflex.obtenerToken(user.getUsername(), user.getPassword());
+		String checkbox = request.getParameter("checkbox");
 		if (token != null) {
-			model = new ModelAndView("index");
 			HttpSession session = request.getSession();
-			session.setAttribute("fiscoflex", fiscoflex);
+			session.setAttribute(ConfiguracionConst.API_NAME, fiscoflex);
 			session.setMaxInactiveInterval(30 * 60);
-			session.setAttribute("URI", request.getRequestURI());
-			session.setMaxInactiveInterval(30 * 60);
-			Cookie cookie = new Cookie("fiscoflex.cookieId", token);
-			cookie.setMaxAge(1 * 30);
-			response.addCookie(cookie);
+			if (checkbox != null) {
+				Cookie cookie = new Cookie(ConfiguracionConst.COOKIE_NAME, token);
+				cookie.setMaxAge(30 * 30);
+				response.addCookie(cookie);
+			}
+			return "index";
 		} else {
-			model = new ModelAndView("login");
-			LoginBean loginBean = new LoginBean();
-			model.addObject("loginBean", loginBean);
+			return "login";
 		}
-		return model;
 	}
 
-	@RequestMapping("/logout")
-	public ModelAndView error(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("Logout ::");
-		ModelAndView model = new ModelAndView("login");
-		LoginBean loginBean = new LoginBean();
-		model.addObject("loginBean", loginBean);
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		if (session != null) {
+			System.out.println("Logout");
 			session.invalidate();
-			response.sendRedirect(request.getContextPath() + "/login");
+			deleteCookieValue(response, request, ConfiguracionConst.COOKIE_NAME);
 		}
-		return model;
+		response.sendRedirect(request.getContextPath() + "/login");
+	}
+
+	public void deleteCookieValue(HttpServletResponse response, HttpServletRequest request, String name) {
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie != null && name.equals(cookie.getName())) {
+					Cookie invalidCookie = new Cookie(ConfiguracionConst.COOKIE_NAME, "");
+					invalidCookie.setMaxAge(0);
+					response.addCookie(invalidCookie);
+				}
+			}
+		}
 	}
 
 }
