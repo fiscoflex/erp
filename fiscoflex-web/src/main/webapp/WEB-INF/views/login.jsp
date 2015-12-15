@@ -36,17 +36,18 @@
 		<div class="login-logo">
 			<a href="../../index2.html"><b>FiscoFlex</b></a>
 		</div>
+		<div></div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
 			<form:form class="form-signin" method="post" action="login"
-				modelAttribute="loginBean">
+				modelAttribute="login">
 				<div class="form-group has-feedback">
-					<form:input id="username" name="username" path="username"
+					<input id="username" name="username"
 						class="form-control" placeholder="Usuario" />
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<form:password id="password" name="password" path="password"
+					<input type="password" id="password" name="password"
 						class="form-control" placeholder="Password" />
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
