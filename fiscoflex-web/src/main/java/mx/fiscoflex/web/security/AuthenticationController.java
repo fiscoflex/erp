@@ -1,6 +1,6 @@
 package mx.fiscoflex.web.security;
 
-import javax.security.auth.login.LoginException;
+import mx.fiscoflex.api.CredencialesInvalidasException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +12,12 @@ public class AuthenticationController{
 
 	@RequestMapping(value = "/auth",method = RequestMethod.GET)
 	public String index(Model model){
-		return "/Authentication";
+		return "Authentication";
 	}
 	
 	@RequestMapping(value = "/authentication",method = RequestMethod.POST)
-	public String Auth(Model model) throws LoginException{
-		throw new LoginException();
+	public String Auth(Model model) throws CredencialesInvalidasException{
+		throw new CredencialesInvalidasException();
 		//return "/Authentication";
 	}
-
 }
