@@ -36,15 +36,15 @@
 		<div class="login-logo">
 			<a href="../../index2.html"><b>FiscoFlex</b></a>
 		</div>
-		<div></div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
 			<form:form class="form-signin" method="post" action="login"
 				modelAttribute="login">
+				<div style="color:red" align="center">${error}</div>
 				<div class="form-group has-feedback">
 					<input id="username" name="username"
 						class="form-control" placeholder="Usuario" />
-					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					<span class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
 					<input type="password" id="password" name="password"
