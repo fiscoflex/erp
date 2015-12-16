@@ -17,7 +17,7 @@ public class UsuarioEntity {
 	private Integer idUsuario;
 
 	@Column(name = "Nombre")
-	private String nombre;
+	private String  nombre;
 
 	@Column(name = "Email")
 	private String email;

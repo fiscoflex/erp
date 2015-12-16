@@ -2,18 +2,22 @@ package mx.fiscoflex.rs.auth;
 
 public class LoginDTO {
 
-	private String nombreUsuario;
+	private String nombre;
 	private String password;
-	public String getNombreUsuario() {
-		return nombreUsuario;
+
+	public String getNombre() {
+		return nombre;
 	}
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
-	}	
+	}
 }

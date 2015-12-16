@@ -5,12 +5,12 @@ import java.util.Date;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
-import javax.security.auth.login.LoginException;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.joda.time.DateTime;
 
 import mx.fiscoflex.rs.exception.BusinessException;
+import mx.fiscoflex.rs.exception.CredencialesValidasException;
 import mx.fiscoflex.rs.persistence.ConfiguracionEntity;
 import mx.fiscoflex.rs.persistence.ConfiguracionQuery;
 import mx.fiscoflex.rs.persistence.TokenEntity;
@@ -31,9 +31,9 @@ public class AuthService {
 	@Inject
 	private ConfiguracionQuery configuracionQuery;
 
-	public String login(LoginDTO loginDTO) throws LoginException {
+	public String login(LoginDTO loginDTO) throws CredencialesValidasException{
 
-		String nombreUsuario = loginDTO.getNombreUsuario();
+		String nombreUsuario = loginDTO.getNombre();
 		String password = loginDTO.getPassword();
 
 		if (nombreUsuario == null || nombreUsuario.length() == 0) {
@@ -55,15 +55,15 @@ public class AuthService {
 		// Validamos el password
 		String hashPassword = Crypto.hmac(password);
 		// Último password correcto
-		UsuarioEntity usuario = usuarioQuery.consultarUsuarioPorNombre(nombreUsuario);
-		credencialesValidas = usuario.getPassword().equals(hashPassword);
-
+			UsuarioEntity usuario = usuarioQuery.consultarUsuarioPorNombre(nombreUsuario);
+			credencialesValidas = usuario.getPassword().equals(hashPassword);
+			
 		if (!credencialesValidas) {
-			throw new LoginException("Las credenciales no son validas");
+			throw new CredencialesValidasException("Las credenciales no son validas");
 		}
-
+		
 		if (!usuarioEntity.getActivo()) {
-			throw new LoginException("El usuario esta inactivo");
+			throw new CredencialesValidasException("El usuario esta inactivo");
 		}
 
 		// Fecha y Hora

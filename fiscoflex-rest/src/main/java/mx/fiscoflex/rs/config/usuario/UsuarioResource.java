@@ -30,7 +30,7 @@ public class UsuarioResource {
 		usuarioService.crearUsuario(usuarioDTO);
 		return Response.ok().build();
 	}
-
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{nombre}")

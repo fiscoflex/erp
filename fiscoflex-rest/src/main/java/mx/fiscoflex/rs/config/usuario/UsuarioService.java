@@ -13,9 +13,12 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.transaction.UserTransaction;
 
+import org.apache.commons.codec.digest.Crypt;
+
 import mx.fiscoflex.rs.exception.BusinessException;
 import mx.fiscoflex.rs.persistence.UsuarioEntity;
 import mx.fiscoflex.rs.persistence.UsuarioQuery;
+import mx.fiscoflex.rs.util.Crypto;
 
 @Stateless
 @TransactionManagement(value = TransactionManagementType.BEAN)
@@ -34,7 +37,7 @@ public class UsuarioService {
 			userTransaction.begin();
 			usuarioEntity.setNombre(usuario.getNombre());
 			usuarioEntity.setEmail(usuario.getEmail());
-			usuarioEntity.setPassword(usuario.getPassword());
+			usuarioEntity.setPassword(Crypto.hmac(usuario.getPassword()));
 			usuarioEntity.setActivo(usuario.getActivo());
 			usuarioEntity.setIdPerfil(usuario.getIdPerfil());
 			usuarioQuery.guardar(usuarioEntity);

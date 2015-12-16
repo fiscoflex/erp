@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Tokens")
 public class TokenEntity {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdToken")

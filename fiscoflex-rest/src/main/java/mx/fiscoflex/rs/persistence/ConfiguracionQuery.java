@@ -9,8 +9,8 @@ public class ConfiguracionQuery {
 	private EntityManager entityManager;
 	
 	public ConfiguracionEntity consultarPorKey(String configuracionKey) {
-		return entityManager.createQuery("FROM ConfiguracionEntity c WHERE c.clave = :clave", ConfiguracionEntity.class)
-				.setParameter("clave", configuracionKey.toString())
+		return entityManager.createQuery("FROM ConfiguracionEntity c WHERE c.valor = :valor", ConfiguracionEntity.class)
+				.setParameter("valor", configuracionKey.toString())
 				.getSingleResult();
 	}
 }
