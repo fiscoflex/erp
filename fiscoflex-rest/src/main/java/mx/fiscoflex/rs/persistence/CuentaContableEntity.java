@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -14,109 +16,100 @@ import javax.persistence.Table;
 import mx.fiscoflex.rs.persistence.CuentaContableEntity;
 
 @Entity
-@Table(name = "cuentascontables")
+@Table(name = "CuentasContables")
 public class CuentaContableEntity implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "idnumerocuenta")
-	private Integer NumeroCuenta;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "IdCuentaContable")
+	private Integer idCuentaContable;
 
-	@Column(name = "nombrecuenta")
-	private String NombreCuenta;
+	@Column(name = "NombreCuenta")
+	private String  nombreCuenta;
 
-	@Column(name = "cuentapadre")
-	private Integer CuentaPadre;
+	@Column(name = "CuentaPadre")
+	private Integer cuentaPadre;
 
-	@Column(name = "naturaleza")
-	private String Naturaleza;
+	@Column(name = "Naturaleza")
+	private String  naturaleza;
 
-	@Column(name = "estadofinanciero")
-	private String EstadoFinanciero;
+	@Column(name = "EstadoFinanciero")
+	private String  estadoFinanciero;
 
-	@Column(name = "origen")
-	private String Origen;
+	@Column(name = "Origen")
+	private String  origen;
 
-	@Column(name = "nivel")
-	private Integer Nivel;
-
-	@Column(name = "profundidad")
-	private Integer Profundidad;
+	@Column(name = "Profundidad")
+	private Integer profundidad;
 
 	@OneToMany(fetch= FetchType.EAGER)
-	@JoinColumn(name = "cuentapadre", referencedColumnName = "idnumerocuenta")
+	@JoinColumn(name = "CuentaPadre", referencedColumnName = "IdCuentaContable")
 	private List<CuentaContableEntity> cuentas;
-	
-	public Integer getNumeroCuenta() {
-		return NumeroCuenta;
+
+	public Integer getIdCuentaContable() {
+		return idCuentaContable;
 	}
 
-	public void setNumeroCuenta(Integer numeroCuenta) {
-		NumeroCuenta = numeroCuenta;
+	public void setIdCuentaContable(Integer idCuentaContable) {
+		this.idCuentaContable = idCuentaContable;
 	}
 
 	public String getNombreCuenta() {
-		return NombreCuenta;
+		return nombreCuenta;
 	}
 
 	public void setNombreCuenta(String nombreCuenta) {
-		NombreCuenta = nombreCuenta;
+		this.nombreCuenta = nombreCuenta;
 	}
 
 	public Integer getCuentaPadre() {
-		return CuentaPadre;
+		return cuentaPadre;
 	}
 
 	public void setCuentaPadre(Integer cuentaPadre) {
-		CuentaPadre = cuentaPadre;
+		this.cuentaPadre = cuentaPadre;
 	}
 
 	public String getNaturaleza() {
-		return Naturaleza;
+		return naturaleza;
 	}
 
 	public void setNaturaleza(String naturaleza) {
-		Naturaleza = naturaleza;
+		this.naturaleza = naturaleza;
 	}
 
 	public String getEstadoFinanciero() {
-		return EstadoFinanciero;
+		return estadoFinanciero;
 	}
 
 	public void setEstadoFinanciero(String estadoFinanciero) {
-		EstadoFinanciero = estadoFinanciero;
+		this.estadoFinanciero = estadoFinanciero;
 	}
 
 	public String getOrigen() {
-		return Origen;
+		return origen;
 	}
 
 	public void setOrigen(String origen) {
-		Origen = origen;
-	}
-
-	public Integer getNivel() {
-		return Nivel;
-	}
-
-	public void setNivel(Integer nivel) {
-		Nivel = nivel;
+		this.origen = origen;
 	}
 
 	public Integer getProfundidad() {
-		return Profundidad;
+		return profundidad;
 	}
 
 	public void setProfundidad(Integer profundidad) {
-		Profundidad = profundidad;
+		this.profundidad = profundidad;
 	}
-	
+
 	public List<CuentaContableEntity> getCuentas() {
 		return cuentas;
 	}
-	
+
 	public void setCuentas(List<CuentaContableEntity> cuentas) {
 		this.cuentas = cuentas;
 	}
+	
 }

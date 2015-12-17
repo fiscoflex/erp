@@ -8,54 +8,65 @@ import javax.persistence.PersistenceContext;
 
 import mx.fiscoflex.rs.persistence.CuentaContableEntity;
 
-public class CuentaContableQuery implements Serializable{
+public class CuentaContableQuery implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@PersistenceContext(name = "fiscoflexpu")
 	private EntityManager entityManager;
 
-
 	/**
-	 * Método que permite aguardar y actualizar registros  
+	 * Método que permite aguardar y actualizar registros
+	 * 
 	 * @param cuentaContableEntity
 	 */
-	public void guardar(CuentaContableEntity cuentaContableEntity) {
+	public void guardarCuentaContable(CuentaContableEntity cuentaContableEntity) {
 		entityManager.persist(cuentaContableEntity);
 	}
 
-
-	/*
-	 * Método que obtiene un registro de cuenta contable por id
+	/**
+	 * Método para obtener una cuenta contable
+	 * 
+	 * @param id
+	 * @return
 	 */
 	public CuentaContableEntity obtenerCuentaContableporId(Integer id) {
 		CuentaContableEntity cuentaContableEntity = new CuentaContableEntity();
-		cuentaContableEntity =  entityManager.find(CuentaContableEntity.class, id);
+		cuentaContableEntity = entityManager.find(CuentaContableEntity.class, id);
 		return cuentaContableEntity;
 	}
 
-	/*
-	 * Método que obtiene la lista de los registros de cuenta contable
+	/**
+	 * Método para obtener la lista de cuentas contables
+	 * 
+	 * @return
 	 */
-	public List<CuentaContableEntity> obtenerRegistros() {
+	public List<CuentaContableEntity> obtenerCuentasContables() {
 		List<CuentaContableEntity> list;
-		list = entityManager.createQuery("SELECT a FROM CuentaContableEntity a", CuentaContableEntity.class).getResultList();
+		list = entityManager.createQuery("SELECT a FROM CuentaContableEntity a", CuentaContableEntity.class)
+				.getResultList();
 		return list;
 	}
 
-	/*
-	 * Método que borra un registro de cuenta contable
+	/**
+	 * Método para eliminar una cuenta contable
+	 * 
+	 * @param id
 	 */
-	public void borrarRegistro(Integer id) {
+	public void borrarCuentaContable(Integer id) {
 		CuentaContableEntity cuentaContaEntity = entityManager.find(CuentaContableEntity.class, id);
 		entityManager.remove(cuentaContaEntity);
 	}
-	
-	/*
-	 * Método que actualiza un registro de cuenta contable
+
+	/**
+	 * Método para actualizar una cuenta contable
+	 * 
+	 * @param cuentaContableEntity
 	 */
 	@SuppressWarnings("unused")
-	public void actualizaRegistro(CuentaContableEntity cuentaContableEntity) {
-		CuentaContableEntity cuentaContaEntity = entityManager.find(CuentaContableEntity.class, cuentaContableEntity.getNumeroCuenta());
+	public void actualizarCuentaContable(CuentaContableEntity cuentaContableEntity) {
+		CuentaContableEntity cuentaContaEntity = entityManager.find(CuentaContableEntity.class,
+				cuentaContableEntity.getIdCuentaContable());
 		entityManager.merge(cuentaContableEntity);
 	}
 }
