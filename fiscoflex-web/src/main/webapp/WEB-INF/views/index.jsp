@@ -286,35 +286,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<!-- Sidebar user panel -->
-				<div class="user-panel">
-					<div class="pull-left image">
-						<img src="dist/img/user2-160x160.jpg" class="img-circle"
-							alt="User Image">
-					</div>
-					<div class="pull-left info">
-						<p>Alexander Pierce</p>
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
-				</div>
-				<!-- /.search form -->
-				<!-- sidebar menu: : style can be found in sidebar.less -->
-				<ul class="sidebar-menu">	
-
-					<li><a href="pages/calendar.html"> <i
-							class="fa fa-calendar"></i> <span>Empresa</span>
-					</a></li>
-
-					<li class="treeview"><a href="#"> </i>
-							<span>Contabilidad</span> <i class="fa fa-angle-left pull-right"></i>
-
-						<ul class="treeview-menu">
-							<li><a href="CuentasContables"><i class="fa fa-circle-o"></i>Cuentas Contables</a></li>
-						</ul></li>
-
-					<li><a href="#"> <i
-							class="fa fa-envelope"></i> <span>Reportes</span>
-					</a></li>
+				<jsp:include page="Menu.jsp" flush="true"/>
 			</section>
 			<!-- /.sidebar -->
 		</aside>

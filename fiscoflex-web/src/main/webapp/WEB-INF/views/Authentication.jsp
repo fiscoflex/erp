@@ -30,7 +30,7 @@
 			}
 		});
 		$.ajax({
-			type : 'POST',
+			type : 'post',
 			url : '/fiscoflex/authentication'
 		});
 	});

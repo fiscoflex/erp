@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -29,7 +30,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Fisco</b></span>
+          <span class="logo-lg"><b>FiscoFlex</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -279,35 +280,7 @@
         <aside class="main-sidebar">
       <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="dist/img/user2-160x160.jpg" class="img-circle"
-              alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <p>Alexander Pierce</p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          </div>
-        </div>
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu"> 
-
-          <li><a href="pages/calendar.html"> <i
-              class="fa fa-calendar"></i> <span>Empresa</span>
-          </a></li>
-
-          <li class="treeview"><a href="#"> </i>
-              <span>Contabilidad</span> <i class="fa fa-angle-left pull-right"></i>
-
-            <ul class="treeview-menu">
-              <li><a href="CuentasContables"><i class="fa fa-circle-o"></i>Cuentas Contables</a></li>
-            </ul></li>
-
-          <li><a href="#"> <i
-              class="fa fa-envelope"></i> <span>Reportes</span>
-          </a></li>
+			<jsp:include page="Menu.jsp" flush="true"/>
       </section>
       <!-- /.sidebar -->
     </aside>
@@ -319,33 +292,60 @@
           <h1>
             Cuentas Contables
           </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">404 error</li>
-          </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-          <div class="error-page">
-            <h2 class="headline text-yellow"> 404</h2>
-            <div class="error-content">
-              <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
-              <p>
-                We could not find the page you were looking for.
-                Meanwhile, you may <a href="../../index.html">return to dashboard</a> or try using the search form.
-              </p>
-              <form class="search-form">
-                <div class="input-group">
-                  <input type="text" name="search" class="form-control" placeholder="Search">
-                  <div class="input-group-btn">
-                    <button type="submit" name="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i></button>
+
+          <div class="row">
+            <section class="col-lg-7 connectedSortable">
+              <div class="nav-tabs-custom">
+              <!-- Tabs within a box -->
+              <ul class="nav nav-tabs pull-right">
+      
+                <li class="pull-left header"><i class="fa fa-list"></i>
+                 Árbol de Cuentas</li>
+              </ul>
+            <div id="ajax" class="demo">
+              <!-- Cuentas Contables -->
+            </div>
+              <div class="tab-content no-padding">
+                <div class="chart tab-pane active" id="revenue-chart"
+                  style="position: relative; height: 350px;"></div>
+                <div class="chart tab-pane" id="sales-chart"
+                  style="position: relative; height: 350px;"></div>
+              </div>
+            </section>
+
+         <section class="col-lg-5 connectedSortable">
+
+            <!-- Map box -->
+            <form:form>
+            <div class="box box-solid bg-light-blue-gradient">
+              <div class="box-header">
+                <i class="fa fa-file-o"></i>
+                <h3 class="box-title">Cuentas</h3>
+              </div>
+              <div class="box-body">
+                <div id="world-map" style="height: 350px; width: 100%;"></div>
+              </div>
+              <!-- /.box-body-->
+              <div class="box-footer no-border">
+                <div class="row">
+                  <div class="col-xs-4 text-center"
+                    style="border-right: 1px solid #f4f4f4">
+                    <div id="sparkline-1"></div>
+                    <div class="knob-label">
+                             <button type="submit" class="btn btn-primary btn-block btn-flat">Guardar</button>
+                    </div>
                   </div>
-                </div><!-- /.input-group -->
-              </form>
-            </div><!-- /.error-content -->
-          </div><!-- /.error-page -->
+                  <!-- ./col -->
+                </div>
+                <!-- /.row -->
+              </div>
+            </div>
+            </form:form>
+          </div>          
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
