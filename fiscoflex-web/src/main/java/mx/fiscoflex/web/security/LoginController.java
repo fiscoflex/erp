@@ -60,14 +60,14 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		if (session != null) {
 			session.invalidate();
 			deleteCookieValue(response, request, ConfiguracionConst.COOKIE_NAME);
 			response.sendRedirect(request.getContextPath() + "/login");
 		}
-		return "login";
+		//return "login";
 	}
 
 	public void deleteCookieValue(HttpServletResponse response, HttpServletRequest request, String name) {
