@@ -41,10 +41,10 @@ public class CuentaContableQuery implements Serializable {
 	 * 
 	 * @return
 	 */
-	public List<CuentaContableEntity> obtenerCuentasContables() {
+	public List<CuentaContableEntity> obtenerCuentas() {
 		List<CuentaContableEntity> list;
-		list = entityManager.createQuery("SELECT a FROM CuentaContableEntity a", CuentaContableEntity.class)
-				.getResultList();
+		list = entityManager.createQuery("SELECT a FROM CuentaContableEntity a WHERE a.cuentaPadre is NULL",
+				CuentaContableEntity.class).getResultList();
 		return list;
 	}
 
