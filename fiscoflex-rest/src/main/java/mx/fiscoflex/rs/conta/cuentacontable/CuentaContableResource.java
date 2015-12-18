@@ -65,8 +65,8 @@ public class CuentaContableResource {
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("{cuentas}")
-	public Response obtenerCuentasContables(@PathParam("cuentas") String cuentas, @Context HttpServletRequest request) {
+	@Path("{busqueda}")
+	public Response obtenerLista(@PathParam("busqueda") String busqueda, @Context HttpServletRequest request) {
 		List<CuentaContableDTO> cuentasDTO = new ArrayList<>();
 		cuentasDTO = cuentaContableService.listCuentaContable();
 		return Response.ok(cuentasDTO).build();

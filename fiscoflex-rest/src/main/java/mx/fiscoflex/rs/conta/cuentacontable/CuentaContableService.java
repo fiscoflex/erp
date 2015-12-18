@@ -128,11 +128,10 @@ public class CuentaContableService {
 	 */
 	public List<CuentaContableDTO> listCuentaContable() {
 		List<CuentaContableDTO> listCuentaDTO = new ArrayList<CuentaContableDTO>();
-
 		UserTransaction utx = context.getUserTransaction();
 		try {
 			utx.begin();
-			List<CuentaContableEntity> listaCuentaEntities = cuentaContableQuery.obtenerCuentasContables();
+			List<CuentaContableEntity> listaCuentaEntities = cuentaContableQuery.obtenerCuentas();
 			for (CuentaContableEntity cuenta : listaCuentaEntities) {
 				listCuentaDTO.add(loadBranch(cuenta));
 			}
