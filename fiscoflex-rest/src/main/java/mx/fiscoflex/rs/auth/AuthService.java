@@ -1,6 +1,7 @@
 package mx.fiscoflex.rs.auth;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -51,9 +52,10 @@ public class AuthService {
 		} catch (NoResultException ex) {
 			credencialesValidas = false;
 		}
-
+System.out.println("password " + password);
 		// Validamos el password
 		String hashPassword = Crypto.hmac(password);
+		System.out.println("hash " + hashPassword);
 		// Último password correcto
 			UsuarioEntity usuario = usuarioQuery.consultarUsuarioPorNombre(nombreUsuario);
 			credencialesValidas = usuario.getPassword().equals(hashPassword);
@@ -78,8 +80,12 @@ public class AuthService {
 		Integer horas = Integer.parseInt(configuracionEntity.getValor());
 		// Fecha de expiración = Fecha creación más horas
 		Date fechaExpiracion = new DateTime(fechaCreacion).plusHours(horas).toDate();
+		
+		String idToken = UUID.randomUUID().toString();
+		
 		// Crear y guardar el has del token
 		TokenEntity nuevoToken = new TokenEntity();
+		nuevoToken.setIdToken(idToken);
 		nuevoToken.setIdUsuario(usuarioEntity);
 		nuevoToken.setFechaCreacion(fechaCreacion);
 		nuevoToken.setFechaExpiracion(fechaExpiracion);

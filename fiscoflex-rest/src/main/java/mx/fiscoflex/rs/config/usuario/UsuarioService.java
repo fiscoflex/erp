@@ -39,7 +39,7 @@ public class UsuarioService {
 			usuarioEntity.setEmail(usuario.getEmail());
 			usuarioEntity.setPassword(Crypto.hmac(usuario.getPassword()));
 			usuarioEntity.setActivo(usuario.getActivo());
-			usuarioEntity.setIdPerfil(usuario.getIdPerfil());
+		//	usuarioEntity.setIdPerfil(usuario.getIdPerfil());
 			usuarioQuery.guardar(usuarioEntity);
 			userTransaction.commit();
 		} catch (PersistenceException ex) {
@@ -63,7 +63,7 @@ public class UsuarioService {
 			usuarioDTO.setEmail(usuarioEntity.getEmail());
 			usuarioDTO.setPassword(usuarioEntity.getPassword());
 			usuarioDTO.setActivo(usuarioEntity.getActivo());
-			usuarioDTO.setIdPerfil(usuarioEntity.getIdPerfil());
+		//	usuarioDTO.setIdPerfil(usuarioEntity.getIdPerfil());
 			userTransaction.commit();
 			return usuarioDTO;
 		} catch (NoResultException ex) {
@@ -104,7 +104,7 @@ public class UsuarioService {
 			usuarioEntity.setEmail(usuarioDTO.getEmail());
 			usuarioEntity.setPassword(usuarioDTO.getPassword());
 			usuarioEntity.setActivo(usuarioDTO.getActivo());
-			usuarioEntity.setIdPerfil(usuarioDTO.getIdPerfil());
+		//	usuarioEntity.setIdPerfil(usuarioDTO.getIdPerfil());
 			usuarioQuery.editar(usuarioEntity);
 			userTransaction.commit();
 		} catch (PersistenceException ex) {

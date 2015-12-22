@@ -8,9 +8,9 @@ public class ConfiguracionQuery {
 	@PersistenceContext(name="fiscoflexpu")
 	private EntityManager entityManager;
 	
-	public ConfiguracionEntity consultarPorKey(String configuracionKey) {
-		return entityManager.createQuery("FROM ConfiguracionEntity c WHERE c.valor = :valor", ConfiguracionEntity.class)
-				.setParameter("valor", configuracionKey.toString())
+	public ConfiguracionEntity consultarPorKey(String idConfiguracion) {
+		return entityManager.createQuery("FROM ConfiguracionEntity c WHERE c.id = :id", ConfiguracionEntity.class)
+				.setParameter("id", idConfiguracion.toString())
 				.getSingleResult();
 	}
 }

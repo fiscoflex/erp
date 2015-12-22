@@ -2,19 +2,16 @@ package mx.fiscoflex.rs.persistence;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Usuarios")
+@Table(name = "Usuario")
 public class UsuarioEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdUsuario")
-	private Integer idUsuario;
+	private String idUsuario;
 
 	@Column(name = "Nombre")
 	private String  nombre;
@@ -28,14 +25,11 @@ public class UsuarioEntity {
 	@Column(name = "Activo")
 	private Boolean activo;
 
-	@Column(name = "IdPerfil")
-	private Integer idPerfil;
-
-	public Integer getIdUsuario() {
+	public String getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(Integer idUsuario) {
+	public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -69,13 +63,5 @@ public class UsuarioEntity {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}
-
-	public Integer getIdPerfil() {
-		return idPerfil;
-	}
-
-	public void setIdPerfil(Integer idPerfil) {
-		this.idPerfil = idPerfil;
 	}
 }

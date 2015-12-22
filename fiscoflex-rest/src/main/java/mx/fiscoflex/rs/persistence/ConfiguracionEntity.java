@@ -6,22 +6,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ConfiguracionesGlobales")
+@Table(name = "Configuracion")
 public class ConfiguracionEntity {
 
 	@Id
-	@Column(name = "IdConfiguracionGlobal")
-	private String clave;
+	@Column(name = "IdConfiguracion")
+	private String idConfiguracion;
 
 	@Column(name = "Valor")
 	private String valor;
 
-	public String getClave() {
-		return clave;
+	
+
+	public String getIdConfiguracion() {
+		return idConfiguracion;
 	}
 
-	public void setClave(String clave) {
-		this.clave = clave;
+	public void setIdConfiguracion(String idConfiguracion) {
+		this.idConfiguracion = idConfiguracion;
 	}
 
 	public String getValor() {

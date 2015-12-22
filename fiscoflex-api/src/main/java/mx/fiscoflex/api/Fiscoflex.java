@@ -56,7 +56,7 @@ public class Fiscoflex {
 			throw new CredencialesInvalidasException();
 
 		} catch (Exception ex) {
-			throw new ErrorInesperadoException();
+			throw new RuntimeException(ex);
 		}
 	}
 

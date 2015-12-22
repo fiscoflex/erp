@@ -5,21 +5,18 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Tokens")
+@Table(name = "Token")
 public class TokenEntity {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdToken")
-	private Integer idToken;
+	private String idToken;
 
 	@Column(name = "Token")
 	private String token;
@@ -37,11 +34,13 @@ public class TokenEntity {
 	@Column(name = "Activo")
 	private Boolean activo;
 
-	public Integer getIdToken() {
+	
+
+	public String getIdToken() {
 		return idToken;
 	}
 
-	public void setIdToken(Integer idToken) {
+	public void setIdToken(String idToken) {
 		this.idToken = idToken;
 	}
 
