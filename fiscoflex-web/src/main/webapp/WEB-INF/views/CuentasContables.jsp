@@ -478,12 +478,12 @@
 			        'url': '/fiscoflex/cuentas',
 			        'dataType': "json",
 			        'success': function (data) {
-			  		for(var i =0; i<data.length;i++){
-			  			old = JSON.stringify(data); 
+			    old = JSON.stringify(data); 
+			  	for(var i =0; i<old.length;i++){
 			  			old = old.replace("\"idCuentaContable\":", "\"id\":");
 			  			old = old.replace("\"nombreCuenta\":", "\"text\":");		  					
 			  			old = old.replace("\"cuentas\":", "\"children\":");
-			  			json = JSON.parse(old);	
+			  			json = JSON.parse(old);
 			  		}
 			      }
 			    });
@@ -498,7 +498,6 @@
 								"stripes" : true
 							},
 							'data' : json
-						//{url : "/fiscoflex/cuentas", type: "GET",dataType :"json"},// spring cuenta controller							
 						},
 						"types" : {
 							"#" : {
