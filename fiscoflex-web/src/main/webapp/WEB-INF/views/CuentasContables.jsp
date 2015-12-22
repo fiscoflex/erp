@@ -52,7 +52,6 @@
 				<!-- logo for regular state and mobile devices --> <span
 				class="logo-lg"><b>FiscoFlex</b></span>
 			</a>
-			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top" role="navigation">
 				<!-- Sidebar toggle button-->
 				<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
@@ -101,10 +100,15 @@
 		</aside>
 
 		<!-- Content Wrapper. Contains page content -->
+		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>Cuentas</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">Dashboard</li>
+				</ol>
 			</section>
 
 			<!-- Main content -->
@@ -129,18 +133,35 @@
 								<div class="box-tools pull-right" data-toggle="tooltip"
 									title="Status"></div>
 							</div>
+							<div class="btn-group">
+								<button type="button" class="btn btn-primary">Action</button>
+								<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">
+									<span class="caret"></span> <span class="sr-only">
+										Acciones</span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a onclick="demo_create();">Crear Cuenta</a></li>
+									<li><a onclick="demo_rename();">Renombrar Cuenta</a></li>
+									<li><a onclick="demo_delete();">Eliminar Cuenta</a></li>
+								</ul>
+							</div>
+
 							<div class="box-body chat" id="chat-box">
-								<div class="row">
+								<!--
+                <div class="row">
 									<div class="col-md-4 col-sm-8 col-xs-8">
 										<button type="button" onclick="demo_create();">Crear</button>
-										<button type="button" onclick="demo_rename();">Cambiar Nombre</button>
+										<button type="button" onclick="demo_rename();">Cambiar
+											Nombre</button>
 										<button type="button" onclick="demo_delete();">Eliminar</button>
 									</div>
 								</div>
+                -->
 								<div id="ajax" class="demo"></div>
 							</div>
 						</div>
-
 
 					</section>
 					<!-- /.Left col -->
@@ -158,25 +179,26 @@
 							</div>
 							<form:form>
 								<div class="form-group">
-									<label for="inputNombre">Nombre Cuenta</label> <input type="text"
-										class="form-control" placeholder="Nombre">
+									<label for="inputNombre">Nombre Cuenta</label> <input
+										type="text" class="form-control" placeholder="Nombre">
 								</div>
 								<div class="form-group">
 									<label for="inputCuentaPadre">Cuenta Padre</label> <input
 										type="text" class="form-control" placeholder="Cuenta Padre">
 								</div>
-                <div class="form-group">
-                  <label for="inputNaturaleza">Naturaleza</label> <input
-                    type="text" class="form-control" placeholder="Naturaleza">
-                </div>
-                <div class="form-group">
-                  <label for="inputEstadoFinanciero">Estado Financiero</label> <input
-                    type="text" class="form-control" placeholder="Estado Financiero">
-                </div>
-                <div class="form-group">
-                  <label for="inputOrigen">Origen</label> <input
-                    type="text" class="form-control" placeholder="Origen">
-                </div>
+								<div class="form-group">
+									<label for="inputNaturaleza">Naturaleza</label> <input
+										type="text" class="form-control" placeholder="Naturaleza">
+								</div>
+								<div class="form-group">
+									<label for="inputEstadoFinanciero">Estado Financiero</label> <input
+										type="text" class="form-control"
+										placeholder="Estado Financiero">
+								</div>
+								<div class="form-group">
+									<label for="inputOrigen">Origen</label> <input type="text"
+										class="form-control" placeholder="Origen">
+								</div>
 
 								<button type="submit" class="btn btn-primary">Guardar</button>
 								<!--<div class="box-body chat" id="chat-box">Formulario</div> -->
@@ -401,7 +423,6 @@
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script src="dist/js/pages/dashboard.js"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="dist/js/jstree.min.js"></script>
 	<script
 		src="http://static.jstree.com/3.0.2/assets/jquery-1.10.2.min.js"></script>
 	<script
@@ -449,62 +470,35 @@
 				}, 250);
 			});
 
-			var testData = [ {
-				"id" : 1,
-				"text" : "Cuentas",
-				"children" : [ {
-					"id" : 2,
-					"text" : "Banco",
-					"state" : "closed",
-					"children" : [ {
-						"id" : 3,
-						"text" : "Santander"
-					}, {
-						"id" : 4,
-						"text" : "Bancomer"
-					}, {
-						"id" : 5,
-						"text" : "Banamex"
-					} ]
-				}, {
-					"id" : 6,
-					"text" : "Clientes",
-					"children" : [ {
-						"id" : 7,
-						"text" : "Juan"
-					}, {
-						"id" : 8,
-						"text" : "Jose"
-					}, {
-						"id" : 9,
-						"text" : "Rosa"
-					}, {
-						"id" : 10,
-						"text" : "Luis",
-						"checked" : true
-					} ]
-				}, {
-					"id" : 11,
-					"text" : "Presentaciones"
-				}, {
-					"id" : 12,
-					"text" : "Documentos"
-				}, {
-					"id" : 13,
-					"text" : "Oficina"
-				} ]
-			}, ];
-
+			var json = (function () {
+	   			 var json = [];
+	   			 var old = [];
+			    $.ajax({
+			        'async': false,
+			        'url': '/fiscoflex/cuentas',
+			        'dataType': "json",
+			        'success': function (data) {
+			  		for(var i =0; i<data.length;i++){
+			  			old = JSON.stringify(data); 
+			  			old = old.replace("\"idCuentaContable\":", "\"id\":");
+			  			old = old.replace("\"nombreCuenta\":", "\"text\":");		  					
+			  			old = old.replace("\"cuentas\":", "\"children\":");
+			  			json = JSON.parse(old);	
+			  		}
+			      }
+			    });
+			    return json;
+			})();
+			
 			$('#ajax').jstree(
 					{
 						"core" : {
 							"animation" : 0,
-							"check_callback" : true,
 							"themes" : {
 								"stripes" : true
 							},
-							'data' : testData
-						//{url : "/fiscoflex/cuentas", type: "GET"}, spring cuenta controller
+							'data' : json
+						//{url : "/fiscoflex/cuentas", type: "GET",dataType :"json"},// spring cuenta controller							
 						},
 						"types" : {
 							"#" : {
@@ -526,6 +520,5 @@
 					});
 		});
 	</script>
-	</div>
 </body>
 </html>
