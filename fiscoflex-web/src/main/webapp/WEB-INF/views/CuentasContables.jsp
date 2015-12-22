@@ -470,26 +470,27 @@
 				}, 250);
 			});
 
-			var json = (function () {
-	   			 var json = [];
-	   			 var old = [];
-			    $.ajax({
-			        'async': false,
-			        'url': '/fiscoflex/cuentas',
-			        'dataType': "json",
-			        'success': function (data) {
-			    old = JSON.stringify(data); 
-			  	for(var i =0; i<old.length;i++){
-			  			old = old.replace("\"idCuentaContable\":", "\"id\":");
-			  			old = old.replace("\"nombreCuenta\":", "\"text\":");		  					
-			  			old = old.replace("\"cuentas\":", "\"children\":");
-			  			json = JSON.parse(old);
-			  		}
-			      }
-			    });
-			    return json;
+			var json = (function() {
+				var json = [];
+				var old = [];
+				$
+						.ajax({
+							'async' : false,
+							'url' : '/fiscoflex/cuentas',
+							'dataType' : "json",
+							'success' : function(data) {
+								old = JSON.stringify(data);
+								for (var i = 0; i < old.length; i++) {
+									old = old.replace("\"idCuentaContable\":","\"id\":");
+									old = old.replace("\"nombreCuenta\":","\"text\":");
+									old = old.replace("\"cuentas\":","\"children\":");
+									json = JSON.parse(old);
+								}
+							}
+						});
+				return json;
 			})();
-			
+
 			$('#ajax').jstree(
 					{
 						"core" : {
