@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mx.fiscoflex.api.Fiscoflex;
+
 
 
 public class FilterLogin implements Filter {
@@ -39,7 +41,7 @@ public class FilterLogin implements Filter {
 			}
 		}
 		HttpSession httpSession = httpRequest.getSession();
-		FiscoFlex fisco = (FiscoFlex) httpSession.getAttribute(ConfiguracionConst.API_NAME);
+		Fiscoflex fisco = (Fiscoflex) httpSession.getAttribute(ConfiguracionConst.API_NAME);
 		boolean apiEnSesion = fisco != null; 
 		System.out.println("URI " + httpRequest.getRequestURI());
 		System.out.println("API en Sesion: " + apiEnSesion);
