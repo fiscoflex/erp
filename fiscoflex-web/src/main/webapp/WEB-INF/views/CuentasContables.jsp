@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,12 +137,10 @@
 									title="Status"></div>
 							</div>
 							<div class="btn-group">
-								<button type="button" class="btn btn-primary">Action</button>
-								<button type="button" class="btn btn-default dropdown-toggle"
+								<button type="button" class="btn btn-default btn-sm dropdown-toggle"
 									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">
-									<span class="caret"></span> <span class="sr-only">
-										Acciones</span>
+									aria-expanded="false">Acciones
+									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
 									<li><a onclick="demo_create();">Crear Cuenta</a></li>
@@ -169,7 +170,7 @@
 					<section class="col-lg-5 connectedSortable">
 
 
-						<!-- Chat box -->
+						<!-- Formulario Crear Cuentas Contables -->
 						<div class="box box-success">
 							<div class="box-header">
 								<i class="fa fa-office"></i>
@@ -177,31 +178,38 @@
 								<div class="box-tools pull-right" data-toggle="tooltip"
 									title="Status"></div>
 							</div>
-							<form:form>
-								<div class="form-group">
-									<label for="inputNombre">Nombre Cuenta</label> <input
-										type="text" class="form-control" placeholder="Nombre">
+							<form:form method = "post" action = "crearCuenta">
+
+								<div class="col-xs-12">
+									<label for="inputNombre">Nombre Cuenta</label> 
+									<input id="nombreCuenta" name="nombreCuenta" type="text" class="form-control" placeholder="Nombre">
 								</div>
-								<div class="form-group">
-									<label for="inputCuentaPadre">Cuenta Padre</label> <input
-										type="text" class="form-control" placeholder="Cuenta Padre">
+								<div class="col-xs-12">
+									<label for="inputCuentaPadre">Cuenta Padre</label> 
+									<input id="cuentaPadre" name="cuentaPadre" type="text" class="form-control" placeholder="Cuenta Padre">
 								</div>
-								<div class="form-group">
-									<label for="inputNaturaleza">Naturaleza</label> <input
-										type="text" class="form-control" placeholder="Naturaleza">
+								<div class="col-xs-12">
+									<label for="inputNaturaleza">Naturaleza</label> 
+									<input id="naturaleza" name="naturaleza" type="text" class="form-control" placeholder="Naturaleza">
 								</div>
-								<div class="form-group">
-									<label for="inputEstadoFinanciero">Estado Financiero</label> <input
-										type="text" class="form-control"
+								<div class="col-xs-12">
+									<label for="inputEstadoFinanciero">Estado Financiero</label> 
+									<input id="estadoFinanciero" name="estadoFinanciero" type="text" class="form-control"
 										placeholder="Estado Financiero">
 								</div>
-								<div class="form-group">
-									<label for="inputOrigen">Origen</label> <input type="text"
-										class="form-control" placeholder="Origen">
+								<div class="col-xs-12">
+									<label for="inputOrigen">Origen</label> 
+									<input id="origen" name="origen" type="text" class="form-control" placeholder="Origen">
 								</div>
 
+								<div class="col-xs-12">
+									<label for="inputProfundidad">Profundidad</label> 
+									<input id="profundidad" name="profundidad" type="text" class="form-control" placeholder="Profundidad">
+								</div>
+
+								<br/><br/>
 								<button type="submit" class="btn btn-primary">Guardar</button>
-								<!--<div class="box-body chat" id="chat-box">Formulario</div> -->
+
 							</form:form>
 						</div>
 
@@ -431,25 +439,17 @@
 
 	<script>
 		function demo_create() {
-			var ref = $('#ajax').jstree(true), sel = ref.get_selected();
-			if (!sel.length) {
-				return false;
-			}
-			sel = sel[0];
-			sel = ref.create_node(sel, {
-				"type" : "file"
-			});
-			if (sel) {
-				ref.edit(sel);
-			}
+
+			var refParent = $('#ajax').jstree(true), selParent = refParent.get_parent();//obtiene el ID del nodo padre
+			var cuentaPadre = new Number(selParent);
+			document.getElementById("cuentaPadre").value = cuentaPadre;
+			
+		
 		};
+
 		function demo_rename() {
-			var ref = $('#ajax').jstree(true), sel = ref.get_selected();
-			if (!sel.length) {
-				return false;
-			}
-			sel = sel[0];
-			ref.edit(sel);
+			var refParent = $('#ajax').jstree(true), selParent = refParent.get_text();//obtiene la descripción del nodo
+
 		};
 		function demo_delete() {
 			var ref = $('#ajax').jstree(true), sel = ref.get_selected();
@@ -470,21 +470,30 @@
 				}, 250);
 			});
 
+			$("#ajax").click(function (e) {
+				var CurrentNode = $("#ajax").jstree("get_selected");
+				console.log($('#ajax').jstree('get_selected'));
+				});
+			
 			var json = (function() {
 				var json = [];
 				var old = [];
-				$
-						.ajax({
+				$.ajax({
 							'async' : false,
 							'url' : '/fiscoflex/cuentas',
 							'dataType' : "json",
 							'success' : function(data) {
 								old = JSON.stringify(data);
+								console.log(data);
 								for (var i = 0; i < old.length; i++) {
 									old = old.replace("\"idCuentaContable\":","\"id\":");
 									old = old.replace("\"nombreCuenta\":","\"text\":");
 									old = old.replace("\"cuentas\":","\"children\":");
+									
 									json = JSON.parse(old);
+									
+									
+									
 								}
 							}
 						});
