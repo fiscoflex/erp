@@ -2,18 +2,17 @@ package mx.fiscoflex.rs.config.usuario;
 
 public class UsuarioDTO {
 
-	private Integer idUsuario;
+	private String idUsuario;
 	private String nombre;
 	private String email;
 	private String password;
 	private Boolean activo;
-	private Integer idPerfil;
 
-	public Integer getIdUsuario() {
+	public String getIdUsuario() {
 		return idUsuario;
 	}
-
-	public void setIdUsuario(Integer idUsuario) {
+	
+	 public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -49,11 +48,4 @@ public class UsuarioDTO {
 		this.activo = activo;
 	}
 
-	public Integer getIdPerfil() {
-		return idPerfil;
-	}
-
-	public void setIdPerfil(Integer idPerfil) {
-		this.idPerfil = idPerfil;
-	}
 }

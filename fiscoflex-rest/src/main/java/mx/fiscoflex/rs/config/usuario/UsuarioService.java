@@ -35,6 +35,7 @@ public class UsuarioService {
 		UserTransaction userTransaction = context.getUserTransaction();
 		try {
 			userTransaction.begin();
+			usuarioEntity.setIdUsuario(usuario.getIdUsuario());
 			usuarioEntity.setNombre(usuario.getNombre());
 			usuarioEntity.setEmail(usuario.getEmail());
 			usuarioEntity.setPassword(Crypto.hmac(usuario.getPassword()));
