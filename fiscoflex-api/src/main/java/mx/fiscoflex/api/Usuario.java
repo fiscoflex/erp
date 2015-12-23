@@ -2,18 +2,17 @@ package mx.fiscoflex.api;
 
 public class Usuario {
 
-	private Integer idUsuario;
+	private String idUsuario;
 	private String  nombre;
 	private String  email;
 	private String  password;
 	private Boolean activo;
-	private Integer idPerfil;
 
-	public Integer getIdUsuario() {
+	public String getIdUsuario() {
 		return idUsuario;
 	}
-
-	public void setIdUsuario(Integer idUsuario) {
+	
+	public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -47,14 +46,6 @@ public class Usuario {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}
-
-	public Integer getIdPerfil() {
-		return idPerfil;
-	}
-
-	public void setIdPerfil(Integer idPerfil) {
-		this.idPerfil = idPerfil;
 	}
 
 }

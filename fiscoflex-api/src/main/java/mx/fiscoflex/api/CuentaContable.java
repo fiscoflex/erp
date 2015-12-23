@@ -2,7 +2,6 @@ package mx.fiscoflex.api;
 
 import java.util.List;
 
-
 public class CuentaContable {
 	
 	private Integer idCuentaContable;
