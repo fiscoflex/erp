@@ -59,8 +59,8 @@ public class CuentaContableController {
 	}
 
 	@RequestMapping(value = "eliminarCuenta", method = RequestMethod.POST)
-	public void eliminarCuentaContable(@RequestParam String idCuenta) {
+	public String eliminarCuentaContable(@RequestParam String idCuenta) {
 		fisco.eliminarCuenta(Integer.parseInt(idCuenta));
-		//return "CuentasContables";
+		return "CuentasContables";
 	}
 }
