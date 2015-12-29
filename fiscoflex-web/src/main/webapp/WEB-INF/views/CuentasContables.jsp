@@ -137,10 +137,11 @@
 									title="Status"></div>
 							</div>
 							<div class="btn-group">
-								<button type="button" class="btn btn-default btn-sm dropdown-toggle"
+								<button type="button"
+									class="btn btn-default btn-sm dropdown-toggle"
 									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">Acciones
-									<span class="caret"></span>
+									aria-expanded="false">
+									Acciones <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
 									<li><a onclick="demo_create();">Crear Cuenta</a></li>
@@ -171,48 +172,119 @@
 
 
 						<!-- Formulario Crear Cuentas Contables -->
-						<div class="box box-success">
+						<div class="box box-success" id="crearCuenta">
 							<div class="box-header">
 								<i class="fa fa-office"></i>
 								<h3 class="box-title">Formulario Cuentas Contables</h3>
 								<div class="box-tools pull-right" data-toggle="tooltip"
 									title="Status"></div>
 							</div>
-							<form:form method = "post" action = "crearCuenta">
+							<form:form method="post" action="crearCuenta" id="crearCuenta"
+								name="crearCuenta">
 
 								<div class="col-xs-12">
-									<label for="inputNombre">Nombre Cuenta</label> 
-									<input id="nombreCuenta" name="nombreCuenta" type="text" class="form-control" placeholder="Nombre">
+									<label for="inputNombre">Nombre Cuenta</label> <input
+										id="nombreCuenta" name="nombreCuenta" type="text"
+										class="form-control" placeholder="Nombre">
 								</div>
 								<div class="col-xs-12">
-									<label for="inputCuentaPadre">Cuenta Padre</label> 
-									<input id="cuentaPadre" name="cuentaPadre" type="text" class="form-control" placeholder="Cuenta Padre">
+									<label for="inputCuentaPadre">Cuenta Padre</label> <input
+										id="cuentaPadre" name="cuentaPadre" type="text"
+										class="form-control" placeholder="Cuenta Padre">
 								</div>
 								<div class="col-xs-12">
-									<label for="inputNaturaleza">Naturaleza</label> 
-									<input id="naturaleza" name="naturaleza" type="text" class="form-control" placeholder="Naturaleza">
+									<label for="inputNaturaleza">Naturaleza</label> <input
+										id="naturaleza" name="naturaleza" type="text"
+										class="form-control" placeholder="Naturaleza">
 								</div>
 								<div class="col-xs-12">
-									<label for="inputEstadoFinanciero">Estado Financiero</label> 
-									<input id="estadoFinanciero" name="estadoFinanciero" type="text" class="form-control"
-										placeholder="Estado Financiero">
+									<label for="inputEstadoFinanciero">Estado Financiero</label> <input
+										id="estadoFinanciero" name="estadoFinanciero" type="text"
+										class="form-control" placeholder="Estado Financiero">
 								</div>
 								<div class="col-xs-12">
-									<label for="inputOrigen">Origen</label> 
-									<input id="origen" name="origen" type="text" class="form-control" placeholder="Origen">
+									<label for="inputOrigen">Origen</label> <input id="origen"
+										name="origen" type="text" class="form-control"
+										placeholder="Origen">
 								</div>
 
 								<div class="col-xs-12">
-									<label for="inputProfundidad">Profundidad</label> 
-									<input id="profundidad" name="profundidad" type="text" class="form-control" placeholder="Profundidad">
+									<label for="inputProfundidad">Profundidad</label> <input
+										id="profundidad" name="profundidad" type="text"
+										class="form-control" placeholder="Profundidad">
 								</div>
-
-								<br/><br/>
-								<button type="submit" class="btn btn-primary">Guardar</button>
-
+								<div class="box-footer clearfix no-border"></div>
+								<div class="box-footer clearfix no-border">
+									<button class="btn btn-primary pull-left">
+										<i class="fa fa-plus"></i>Guardar
+									</button>
+								</div>
 							</form:form>
-						</div>
 
+						</div>
+						<!-- Formulario editar cuentas contables -->
+						<div class="box box-success" id="editarCuenta"
+							style="display: none;">
+							<div class="box-header">
+								<i class="fa fa-office"></i>
+								<h3 class="box-title">Formulario Editar Cuentas Contables</h3>
+								<div class="box-tools pull-right" data-toggle="tooltip"
+									title="Status"></div>
+							</div>
+							<form:form method="post" action="editarCuenta" id="editarCuenta"
+								name="editarCuenta">
+
+								<div class="col-xs-12" style="display:none;">
+									<label for="inputIdCuentaContable">Id Cuenta Contable</label> <input
+										id="idCuentaContableE" name="idCuentaContableE" type="text"
+										class="form-control" placeholder="Id Cuenta Contable">
+								</div>
+
+								<div class="col-xs-12" style="display:none;">
+									<label for="inputCuentaPadreE">Cuenta Padre</label> <input
+										id="cuentaPadreE" name="cuentaPadreE" type="text"
+										class="form-control" placeholder="Cuenta Padre">
+								</div>
+
+								<div class="col-xs-12" style="display:none;">
+									<label for="inputProfundidadE">Profundidad</label> <input
+										id="profundidadE" name="profundidadE" type="text"
+										class="form-control" placeholder="Profundidad">
+								</div>
+								
+								<div class="col-xs-12">
+									<label for="inputNombre">Nombre Cuenta</label> <input
+										id="nombreCuentaE" name="nombreCuentaE" type="text"
+										class="form-control" placeholder="Nombre">
+								</div>
+
+								<div class="col-xs-12">
+									<label for="inputNaturaleza">Naturaleza</label> <input
+										id="naturalezaE" name="naturalezaE" type="text"
+										class="form-control" placeholder="Naturaleza">
+								</div>
+
+								<div class="col-xs-12">
+									<label for="inputEstadoFinanciero">Estado Financiero</label> <input
+										id="estadoFinancieroE" name="estadoFinancieroE" type="text"
+										class="form-control" placeholder="Estado Financiero">
+								</div>
+
+								<div class="col-xs-12">
+									<label for="inputOrigen">Origen</label> <input id="origenE"
+										name="origenE" type="text" class="form-control"
+										placeholder="Origen">
+								</div>
+
+								<div class="box-footer clearfix no-border"></div>
+								<div class="box-footer clearfix no-border">
+									<button class="btn btn-primary pull-left">
+										<i class="fa fa-pencil"></i>Editar Cuenta Contable
+									</button>
+								</div>
+							</form:form>
+
+						</div>
 					</section>
 					<!-- right col -->
 				</div>
@@ -440,24 +512,59 @@
 	<script>
 		function demo_create() {
 
-			var refParent = $('#ajax').jstree(true), selParent = refParent.get_parent();//obtiene el ID del nodo padre
-			var cuentaPadre = new Number(selParent);
-			document.getElementById("cuentaPadre").value = cuentaPadre;
-			
-		
+			document.getElementById("crearCuenta").style.display = "block";
+			document.getElementById("editarCuenta").style.display = "none";
+			var selectedNode = $('#ajax').jstree(true).get_selected('full',
+					true);
+			selectedNode = selectedNode[0];
+			var id = selectedNode.id;
+			document.getElementById("cuentaPadre").value = id;
+
 		};
 
 		function demo_rename() {
-			var refParent = $('#ajax').jstree(true), selParent = refParent.get_text();//obtiene la descripción del nodo
 
+			document.getElementById("crearCuenta").style.display = "none";
+			document.getElementById("editarCuenta").style.display = "block";
+
+			var selectedNode = $('#ajax').jstree(true).get_selected('full',true);
+			selectedNode = selectedNode[0];
+
+			var id = selectedNode.id;
+			var text = selectedNode.text;//texto del nodo seleccionado
+			var estadoFinanciero = selectedNode.original.estadoFinanciero;
+			var naturaleza = selectedNode.original.naturaleza;
+			var origen = selectedNode.original.origen;
+			var cuentaPadre = selectedNode.original.cuentaPadre;
+			var profundidad = selectedNode.original.profundidad;
+			
+			document.getElementById("idCuentaContableE").value = id;
+			document.getElementById("nombreCuentaE").value = text;
+			document.getElementById("estadoFinancieroE").value = estadoFinanciero;
+			document.getElementById("naturalezaE").value = naturaleza;
+			document.getElementById("origenE").value = origen;
+			document.getElementById("cuentaPadreE").value = cuentaPadre;
+			document.getElementById("profundidadE").value = profundidad;			
 		};
+
 		function demo_delete() {
-			var ref = $('#ajax').jstree(true), sel = ref.get_selected();
-			if (!sel.length) {
-				return false;
-			}
-			ref.delete_node(sel);
+			var selectedNode = $('#ajax').jstree(true).get_selected('full',true);
+			selectedNode = selectedNode[0];
+			 var id = selectedNode.id;
+			 $.ajaxSetup({
+					statusCode : {
+						200 : function() {
+							location.href = "/fiscoflex/CuentasContables"
+						}
+					}
+				});
+			 $.ajax({
+				  	type : 'post',
+			        url: '/fiscoflex/eliminarCuenta',
+			        data: ({idCuenta : id})
+			      });
 		};
+
 		$(function() {
 			var to = false;
 			$('#demo_q').keyup(function() {
@@ -470,15 +577,26 @@
 				}, 250);
 			});
 
-			$("#ajax").click(function (e) {
-				var CurrentNode = $("#ajax").jstree("get_selected");
-				console.log($('#ajax').jstree('get_selected'));
-				});
-			
+			$("#ajax")
+					.click(
+							function(e) {
+								var selectedNode = $('#ajax').jstree(true)
+										.get_selected('full', true);
+								selectedNode = selectedNode[0];
+								var id = selectedNode.id;//id nodo seleccionado
+								var text = selectedNode.text;//texto del nodo seleccionado
+								var parent = selectedNode.parent;// id nodo padre del nodo seleccionado
+								var estadoFinanciero = selectedNode.original.estadoFinanciero;
+								var naturaleza = selectedNode.original.naturaleza;
+								var origen = selectedNode.original.origen;
+								//console.log(estadoFinanciero, naturaleza, origen);
+							});
+
 			var json = (function() {
 				var json = [];
 				var old = [];
-				$.ajax({
+				$
+						.ajax({
 							'async' : false,
 							'url' : '/fiscoflex/cuentas',
 							'dataType' : "json",
@@ -486,14 +604,13 @@
 								old = JSON.stringify(data);
 								console.log(data);
 								for (var i = 0; i < old.length; i++) {
-									old = old.replace("\"idCuentaContable\":","\"id\":");
-									old = old.replace("\"nombreCuenta\":","\"text\":");
-									old = old.replace("\"cuentas\":","\"children\":");
-									
+									old = old.replace("\"idCuentaContable\":",
+											"\"id\":");
+									old = old.replace("\"nombreCuenta\":",
+											"\"text\":");
+									old = old.replace("\"cuentas\":",
+											"\"children\":");
 									json = JSON.parse(old);
-									
-									
-									
 								}
 							}
 						});
