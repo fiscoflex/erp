@@ -234,24 +234,24 @@
 							<form:form method="post" action="editarCuenta" id="editarCuenta"
 								name="editarCuenta">
 
-								<div class="col-xs-12" style="display:none;">
+								<div class="col-xs-12" style="display: none;">
 									<label for="inputIdCuentaContable">Id Cuenta Contable</label> <input
 										id="idCuentaContableE" name="idCuentaContableE" type="text"
 										class="form-control" placeholder="Id Cuenta Contable">
 								</div>
 
-								<div class="col-xs-12" style="display:none;">
+								<div class="col-xs-12" style="display: none;">
 									<label for="inputCuentaPadreE">Cuenta Padre</label> <input
 										id="cuentaPadreE" name="cuentaPadreE" type="text"
 										class="form-control" placeholder="Cuenta Padre">
 								</div>
 
-								<div class="col-xs-12" style="display:none;">
+								<div class="col-xs-12" style="display: none;">
 									<label for="inputProfundidadE">Profundidad</label> <input
 										id="profundidadE" name="profundidadE" type="text"
 										class="form-control" placeholder="Profundidad">
 								</div>
-								
+
 								<div class="col-xs-12">
 									<label for="inputNombre">Nombre Cuenta</label> <input
 										id="nombreCuentaE" name="nombreCuentaE" type="text"
@@ -519,7 +519,6 @@
 			selectedNode = selectedNode[0];
 			var id = selectedNode.id;
 			document.getElementById("cuentaPadre").value = id;
-
 		};
 
 		function demo_rename() {
@@ -527,7 +526,8 @@
 			document.getElementById("crearCuenta").style.display = "none";
 			document.getElementById("editarCuenta").style.display = "block";
 
-			var selectedNode = $('#ajax').jstree(true).get_selected('full',true);
+			var selectedNode = $('#ajax').jstree(true).get_selected('full',
+					true);
 			selectedNode = selectedNode[0];
 
 			var id = selectedNode.id;
@@ -537,32 +537,38 @@
 			var origen = selectedNode.original.origen;
 			var cuentaPadre = selectedNode.original.cuentaPadre;
 			var profundidad = selectedNode.original.profundidad;
-			
+
 			document.getElementById("idCuentaContableE").value = id;
 			document.getElementById("nombreCuentaE").value = text;
 			document.getElementById("estadoFinancieroE").value = estadoFinanciero;
 			document.getElementById("naturalezaE").value = naturaleza;
 			document.getElementById("origenE").value = origen;
 			document.getElementById("cuentaPadreE").value = cuentaPadre;
-			document.getElementById("profundidadE").value = profundidad;			
+			document.getElementById("profundidadE").value = profundidad;
 		};
 
 		function demo_delete() {
-			var selectedNode = $('#ajax').jstree(true).get_selected('full',true);
-			selectedNode = selectedNode[0];
-			 var id = selectedNode.id;
-			 $.ajaxSetup({
+			var borrar = confirm("Estas seguro de eliminar la cuenta seleccionada!!!");
+			if (borrar) {
+				var selectedNode = $('#ajax').jstree(true).get_selected('full',
+						true);
+				selectedNode = selectedNode[0];
+				var id = selectedNode.id;
+				$.ajaxSetup({
 					statusCode : {
 						200 : function() {
 							location.href = "/fiscoflex/CuentasContables"
 						}
 					}
 				});
-			 $.ajax({
-				  	type : 'post',
-			        url: '/fiscoflex/eliminarCuenta',
-			        data: ({idCuenta : id})
-			      });
+				$.ajax({
+					type : 'post',
+					url : '/fiscoflex/eliminarCuenta',
+					data : ({
+						idCuenta : id
+					})
+				});
+			}
 		};
 
 		$(function() {
@@ -642,7 +648,31 @@
 							}
 						},
 						"plugins" : [ "contextmenu", "dnd", "search", "state",
-								"types", "wholerow" ]
+								"types" ], //"wholerow" 
+						"contextmenu" : {
+							"items" : function($node) {
+								return {
+									"Create" : {
+										"label" : "Create cuenta contable",
+										"action" : function(obj) {
+											demo_create();
+										}
+									},
+									"Rename" : {
+										"label" : "Editar cuenta contable",
+										"action" : function(obj) {
+											demo_rename();
+										}
+									},
+									"Delete" : {
+										"label" : "Borrar cuenta contable",
+										"action" : function(obj) {
+											demo_delete();
+										}
+									}
+								};
+							}
+						}
 					});
 		});
 	</script>
