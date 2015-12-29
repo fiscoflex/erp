@@ -139,6 +139,7 @@ public class Fiscoflex {
 			if (statusCode == 200) {
 				String responseMessage = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
 				String response = gson.fromJson(responseMessage, String.class);
+				System.out.println("CUENTA ELIMINADA.....");
 				return response;
 			} else {
 				return "";
@@ -158,11 +159,11 @@ public class Fiscoflex {
 			httpResponse = httpClient.execute(getRequest);
 			Integer statusCode = httpResponse.getStatusLine().getStatusCode();
 			System.out.println("statusCode:: " + statusCode);
+			Gson gson = new Gson();
 			if (statusCode == 200) {
 				String responseMessage = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
-				System.out.println(responseMessage);
-
-				return "correcto";
+				String response = gson.fromJson(responseMessage, String.class);
+				return response;
 			} else {
 				return "error";
 			}
