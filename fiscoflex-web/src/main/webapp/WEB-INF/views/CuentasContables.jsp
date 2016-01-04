@@ -40,10 +40,8 @@
 <link rel="stylesheet"
 	href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-<link rel="stylesheet"
-	href="http://static.jstree.com/3.0.2/assets/bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="http://static.jstree.com/3.0.2/assets/dist/themes/default/style.min.css" />
+<!-- <link rel="stylesheet" href="http://static.jstree.com/3.0.2/assets/bootstrap/css/bootstrap.min.css" /> -->
+<link rel="stylesheet" href="http://static.jstree.com/3.0.2/assets/dist/themes/default/style.min.css" />
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -550,8 +548,7 @@
 		function demo_delete() {
 			var borrar = confirm("Estas seguro de eliminar la cuenta seleccionada!!!");
 			if (borrar) {
-				var selectedNode = $('#ajax').jstree(true).get_selected('full',
-						true);
+				var selectedNode = $('#ajax').jstree(true).get_selected('full',true);
 				selectedNode = selectedNode[0];
 				var id = selectedNode.id;
 				$.ajaxSetup({
