@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import mx.fiscoflex.api.CredencialesInvalidasException;
-import mx.fiscoflex.api.Fiscoflex;
-import mx.fiscoflex.api.Usuario;
 
 @Controller
 public class LoginController {
@@ -33,9 +30,11 @@ public class LoginController {
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String home(@ModelAttribute(value = "login") LoginBean user, HttpServletResponse response,
-			HttpServletRequest request, ModelMap model) throws CredencialesInvalidasException{
+			HttpServletRequest request, ModelMap model) {
+		
+		/*
 		try{
-			Fiscoflex fiscoflex = new Fiscoflex();
+			FiscoflexAPI fiscoflex = new FiscoflexAPI();
 			Usuario usuario = new Usuario();
 			usuario.setNombre(user.getUsername());
 			usuario.setPassword(user.getPassword());
@@ -57,6 +56,10 @@ public class LoginController {
 			model.put("error", "Usuario/Password incorrectos");
 			return "login";
 		}
+		
+		*/
+		
+		return null;
 	}
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)

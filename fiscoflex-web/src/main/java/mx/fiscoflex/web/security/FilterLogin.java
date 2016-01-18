@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mx.fiscoflex.api.Fiscoflex;
+import mx.fiscoflex.api.token.FiscoflexAPI;
 
 
 
@@ -41,7 +41,7 @@ public class FilterLogin implements Filter {
 			}
 		}
 		HttpSession httpSession = httpRequest.getSession();
-		Fiscoflex fisco = (Fiscoflex) httpSession.getAttribute(ConfiguracionConst.API_NAME);
+		FiscoflexAPI fisco = (FiscoflexAPI) httpSession.getAttribute(ConfiguracionConst.API_NAME);
 		boolean apiEnSesion = fisco != null; 
 		System.out.println("URI " + httpRequest.getRequestURI());
 		System.out.println("API en Sesion: " + apiEnSesion);
@@ -53,7 +53,7 @@ public class FilterLogin implements Filter {
 			
 			if (existeCookie) {
 				// Agregar el api en sesion
-				FiscoFlex fiscoFlex = new FiscoFlex();
+				FiscoflexAPI fiscoFlex = new FiscoflexAPI();
 				httpSession.setAttribute(ConfiguracionConst.API_NAME, fiscoFlex);
 				setCookie(httpResponse, ConfiguracionConst.COOKIE_NAME, cookieId, 30);
 			} else {

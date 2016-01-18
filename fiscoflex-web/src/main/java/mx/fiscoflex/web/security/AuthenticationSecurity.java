@@ -4,7 +4,7 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
-import mx.fiscoflex.api.AutentificacionException;
+import mx.fiscoflex.api.ApiException;
 
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpStatus;
@@ -28,8 +28,8 @@ public class AuthenticationSecurity {
 	 */
 
 	@ResponseStatus(HttpStatus.UNAUTHORIZED) // ERROR 401
-	@ExceptionHandler(AutentificacionException.class)
-	public ModelAndView defaultErrorHandler(HttpServletRequest req, AutentificacionException login) throws AutentificacionException {
+	@ExceptionHandler(ApiException.class)
+	public ModelAndView defaultErrorHandler(HttpServletRequest req, ApiException login) throws ApiException {
 		Enumeration<String> headerNames = req.getHeaderNames();
 		while (headerNames.hasMoreElements()) {
 			String headerName = headerNames.nextElement();
