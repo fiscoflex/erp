@@ -1,7 +1,7 @@
 package mx.fiscoflex.api.token;
 
-import mx.fiscoflex.api.ApiContext;
-import mx.fiscoflex.api.token.TokenService;
+import mx.fiscoflex.sdk.token.TokenService;
+import mx.fiscoflex.sdk.webapi.ApiContext;
 
 public class TokenServiceTest {
 
