@@ -1,4 +1,4 @@
-package mx.fiscoflex.sdk.token;
+package mx.fiscoflex.api.token;
 
 public class FiscoflexAPI {
 

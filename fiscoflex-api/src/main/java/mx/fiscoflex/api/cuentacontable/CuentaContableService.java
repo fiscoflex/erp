@@ -1,8 +1,8 @@
-package mx.fiscoflex.sdk.cuentacontable;
+package mx.fiscoflex.api.cuentacontable;
 
 import java.util.List;
 
-import mx.fiscoflex.sdk.webapi.ApiContext;
+import mx.fiscoflex.api.apicontext.ApiContext;
 
 public class CuentaContableService {
 

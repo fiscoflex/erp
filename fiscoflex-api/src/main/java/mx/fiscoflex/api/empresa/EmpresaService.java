@@ -1,6 +1,6 @@
-package mx.fiscoflex.sdk.empresa;
+package mx.fiscoflex.api.empresa;
 
-import mx.fiscoflex.sdk.webapi.ApiContext;
+import mx.fiscoflex.api.apicontext.ApiContext;
 
 public class EmpresaService {
 

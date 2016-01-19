@@ -1,4 +1,4 @@
-package mx.fiscoflex.sdk.webapi;
+package mx.fiscoflex.api.apicontext;
 
 import org.apache.http.HttpResponse;
 

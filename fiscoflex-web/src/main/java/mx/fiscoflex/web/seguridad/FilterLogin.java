@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mx.fiscoflex.sdk.token.FiscoflexAPI;
+import mx.fiscoflex.api.token.FiscoflexAPI;
 
 
 

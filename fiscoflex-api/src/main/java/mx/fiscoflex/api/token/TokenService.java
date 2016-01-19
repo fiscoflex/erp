@@ -1,4 +1,4 @@
-package mx.fiscoflex.sdk.token;
+package mx.fiscoflex.api.token;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -9,9 +9,9 @@ import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
 
-import mx.fiscoflex.sdk.webapi.ApiContext;
-import mx.fiscoflex.sdk.webapi.ApiException;
-import mx.fiscoflex.sdk.webapi.ResponseValidator;
+import mx.fiscoflex.api.apicontext.ApiContext;
+import mx.fiscoflex.api.apicontext.ApiException;
+import mx.fiscoflex.api.apicontext.ResponseValidator;
 
 public class TokenService {
 

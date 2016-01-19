@@ -1,4 +1,4 @@
-package mx.fiscoflex.sdk.cuentacontable;
+package mx.fiscoflex.api.cuentacontable;
 
 import java.util.List;
 

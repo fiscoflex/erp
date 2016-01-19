@@ -1,7 +1,7 @@
 package mx.fiscoflex.web.config;
 
-import mx.fiscoflex.sdk.token.TokenService;
-import mx.fiscoflex.sdk.webapi.ApiContext;
+import mx.fiscoflex.api.apicontext.ApiContext;
+import mx.fiscoflex.api.token.TokenService;
 
 public class ServiceFactory {
 
