@@ -1,6 +1,6 @@
 package mx.fiscoflex.rs.util;
 
-import mx.fiscoflex.rs.util.Crypto;
+import mx.fiscoflex.util.Crypto;
 
 public class CryptoTest {
 
