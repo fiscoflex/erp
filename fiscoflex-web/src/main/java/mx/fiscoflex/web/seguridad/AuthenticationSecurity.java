@@ -4,7 +4,9 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
-import mx.fiscoflex.service.apicontext.ApiException;
+
+
+import mx.fiscoflex.exception.ApiException;
 
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpStatus;

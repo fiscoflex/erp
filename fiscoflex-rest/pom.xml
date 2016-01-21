@@ -203,6 +203,14 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<dependency>
+		   <groupId>org.jboss.spec</groupId>
+		   <artifactId>jboss-javaee-all-7.0</artifactId>		   
+		   <version>1.0.0.Final</version>
+		   <scope>provided</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>

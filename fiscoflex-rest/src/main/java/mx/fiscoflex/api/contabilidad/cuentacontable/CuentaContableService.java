@@ -14,9 +14,9 @@ import javax.persistence.PersistenceException;
 import javax.transaction.UserTransaction;
 
 import mx.fiscoflex.api.contabilidad.cuentacontable.CuentaContableDTO;
-import mx.fiscoflex.api.core.exception.BusinessException;
-import mx.fiscoflex.api.core.model.CuentaContable;
-import mx.fiscoflex.api.core.repository.CuentaContableRepository;
+import mx.fiscoflex.exception.BusinessException;
+import mx.fiscoflex.model.CuentaContable;
+import mx.fiscoflex.repository.CuentaContableRepository;
 
 @Stateless
 @TransactionManagement(value = TransactionManagementType.BEAN)
