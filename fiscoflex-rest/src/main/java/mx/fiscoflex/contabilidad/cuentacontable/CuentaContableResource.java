@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.api.cuentacontable;
+package mx.fiscoflex.contabilidad.cuentacontable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import mx.fiscoflex.contabilidad.api.cuentacontable.CuentaContableDTO;
-import mx.fiscoflex.contabilidad.api.cuentacontable.CuentaContableService;
+import mx.fiscoflex.contabilidad.cuentacontable.CuentaContableDTO;
+import mx.fiscoflex.contabilidad.cuentacontable.CuentaContableService;
 
 @Path("/cuentasContables")
 public class CuentaContableResource {

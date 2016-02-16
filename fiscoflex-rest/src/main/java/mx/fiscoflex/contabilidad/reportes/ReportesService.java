@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.api.reportes;
+package mx.fiscoflex.contabilidad.reportes;
 
 import java.util.List;
 

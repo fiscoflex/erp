@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.api.empresa;
+package mx.fiscoflex.contabilidad.empresa;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.api.empresa;
+package mx.fiscoflex.contabilidad.empresa;
 
 public class Empresa {
 

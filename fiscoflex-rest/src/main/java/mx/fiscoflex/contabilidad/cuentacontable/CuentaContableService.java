@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.api.cuentacontable;
+package mx.fiscoflex.contabilidad.cuentacontable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.transaction.UserTransaction;
 
-import mx.fiscoflex.contabilidad.api.cuentacontable.CuentaContableDTO;
 import mx.fiscoflex.contabilidad.basedatos.contabilidad.CuentaContable;
 import mx.fiscoflex.contabilidad.basedatos.contabilidad.CuentaContableRepository;
+import mx.fiscoflex.contabilidad.cuentacontable.CuentaContableDTO;
 import mx.fiscoflex.contabilidad.exception.BusinessException;
 
 @Stateless
