@@ -141,12 +141,6 @@
 			
 		</dependency>
 
-		<dependency>
-			<groupId>mx.fiscoflex</groupId>
-			<artifactId>fiscoflex-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-
 		<!-- Import the EJB API, we use provided scope as the API is included in 
 			JBoss AS 7 -->
 		<dependency>
