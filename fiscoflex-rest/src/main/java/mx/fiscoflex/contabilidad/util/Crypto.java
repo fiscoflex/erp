@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.crypto;
+package mx.fiscoflex.contabilidad.util;
 
 import java.security.Key;
 

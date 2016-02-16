@@ -1,6 +1,6 @@
 package mx.fiscoflex.api.core.util;
 
-import mx.fiscoflex.contabilidad.crypto.Crypto;
+import mx.fiscoflex.contabilidad.util.Crypto;
 
 
 public class CryptoTest {

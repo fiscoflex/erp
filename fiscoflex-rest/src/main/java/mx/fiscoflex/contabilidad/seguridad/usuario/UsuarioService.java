@@ -5,9 +5,9 @@ import javax.inject.Inject;
 
 import mx.fiscoflex.contabilidad.basedatos.contabilidad.Usuario;
 import mx.fiscoflex.contabilidad.basedatos.contabilidad.UsuarioRepository;
-import mx.fiscoflex.contabilidad.crypto.Crypto;
 import mx.fiscoflex.contabilidad.seguridad.bitacora.BitacoraDTO;
 import mx.fiscoflex.contabilidad.seguridad.bitacora.BitacoraService;
+import mx.fiscoflex.contabilidad.util.Crypto;
 
 @Stateless
 public class UsuarioService {

@@ -1,3 +1,4 @@
+
 package mx.fiscoflex.contabilidad.empresa;
 
 import javax.ejb.Stateless;
