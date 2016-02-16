@@ -1,9 +1,9 @@
-package mx.fiscoflex.contabilidad.basedatos.contabilidad;
+package mx.fiscoflex.contabilidad.bd.contabilidad;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import mx.fiscoflex.contabilidad.basedatos.contabilidad.Configuracion;
+import mx.fiscoflex.contabilidad.bd.contabilidad.Configuracion;
 
 public class ConfiguracionRepositoryImpl {
 

@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.basedatos.contabilidad;
+package mx.fiscoflex.contabilidad.bd.contabilidad;
 
 import java.io.Serializable;
 import java.util.List;

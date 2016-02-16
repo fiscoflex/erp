@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.basedatos.contabilidad;
+package mx.fiscoflex.contabilidad.bd.contabilidad;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import mx.fiscoflex.contabilidad.basedatos.contabilidad.CuentaContable;
+import mx.fiscoflex.contabilidad.bd.contabilidad.CuentaContable;
 
 @Entity
 @Table(name = "CuentasContables")

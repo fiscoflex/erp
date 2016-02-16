@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.basedatos.contabilidad;
+package mx.fiscoflex.contabilidad.bd.contabilidad;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import mx.fiscoflex.contabilidad.basedatos.contabilidad.Venta;
+import mx.fiscoflex.contabilidad.bd.contabilidad.Venta;
 
 @Stateless
 public class VentaRepositoryImpl implements Serializable {

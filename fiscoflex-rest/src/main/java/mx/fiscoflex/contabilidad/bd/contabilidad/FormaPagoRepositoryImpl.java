@@ -1,4 +1,4 @@
-package mx.fiscoflex.contabilidad.basedatos.contabilidad;
+package mx.fiscoflex.contabilidad.bd.contabilidad;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import mx.fiscoflex.contabilidad.basedatos.contabilidad.FormaPago;
+import mx.fiscoflex.contabilidad.bd.contabilidad.FormaPago;
 
 public class FormaPagoRepositoryImpl implements Serializable{
 	
