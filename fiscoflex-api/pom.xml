@@ -1,39 +1,37 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>mx.fiscoflex</groupId>
-        <artifactId>fiscoflex-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
+	<groupId>mx.fiscoflex</groupId>
+	<version>1.0.0-SNAPSHOT</version>
 
-    <artifactId>fiscoflex-api</artifactId>
-    <name>API Fiscoflex</name>
-    <description>API de Funcionalidad del Sistema Fiscoflex</description>  
+	<artifactId>fiscoflex-api</artifactId>
+	<name>API Fiscoflex</name>
+	<description>API de Funcionalidad del Sistema Fiscoflex</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.javax.jee.api.version>7.0</version.javax.jee.api.version>
+		<version.org.wildfly>8.0.0.Final</version.org.wildfly>
+		<version.arquillian_core>1.1.4.Final</version.arquillian_core>
+		<version.shrinkwrap.resolvers>2.2.0-beta-1</version.shrinkwrap.resolvers>
+	</properties>
 
 	<dependencyManagement>
-		<dependencies>			
+		<dependencies>
+
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>1.1.10.Final</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
 
 			<dependency>
 				<groupId>javax</groupId>
 				<artifactId>javaee-api</artifactId>
 				<version>6.0</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-bom</artifactId>
-				<version>1.1.1.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.bom</groupId>
-				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
-				<version>1.0.0.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
 			</dependency>
 
 			<!-- Reportes -->
@@ -102,22 +100,11 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.jboss.resteasy</groupId>
-				<artifactId>resteasy-jaxrs</artifactId>
-				<version>2.3.2.Final</version>
-			</dependency>
-
-			<dependency>
 				<groupId>commons-codec</groupId>
 				<artifactId>commons-codec</artifactId>
 				<version>1.9</version>
 			</dependency>
 
-			<dependency>
-				<groupId>org.jboss.resteasy</groupId>
-				<artifactId>resteasy-multipart-provider</artifactId>
-				<version>2.3.2.Final</version>
-			</dependency>
 
 			<dependency>
 				<groupId>com.sun.mail</groupId>
@@ -134,47 +121,52 @@
 		</dependencies>
 
 	</dependencyManagement>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<scope>provided</scope>
-			
-		</dependency>
-				
-		<!-- Import the EJB API, we use provided scope as the API is included in 
-			JBoss AS 7 -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<scope>provided</scope>
+
 		</dependency>
 
-		<!-- Import the CDI API, we use provided scope as the API is included in 
-			JBoss AS 7 -->
+
 		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<version>1.0.0.Final</version>
+			<type>pom</type>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>org.jboss.spec.javax.annotation</groupId>
-			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
-			<scope>provided</scope>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
 		</dependency>
+
+
+
+
+
+		<dependency>
+			<groupId>org.wildfly.arquillian</groupId>
+			<artifactId>wildfly-arquillian-container-remote</artifactId>
+			<version>1.0.2.Final</version>
+			<scope>test</scope>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-		</dependency>
-
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -193,29 +185,10 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<scope>provided</scope>
-		</dependency>
 
-
-		<dependency>
-		   <groupId>org.jboss.spec</groupId>
-		   <artifactId>jboss-javaee-all-7.0</artifactId>		   
-		   <version>1.0.0.Final</version>
-		   <scope>provided</scope>
-		</dependency>
-		
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-multipart-provider</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -227,10 +200,26 @@
 			<groupId>com.sun.mail</groupId>
 			<artifactId>gimap</artifactId>
 		</dependency>
-		
-		
+
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
+
+		<!-- S -->
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-depchain</artifactId>
+			<version>${version.shrinkwrap.resolvers}</version>
+			<scope>test</scope>
+			<type>pom</type>
+		</dependency>
+
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -241,7 +230,7 @@
 					<source>1.7</source>
 					<target>1.7</target>
 				</configuration>
-			</plugin>			
+			</plugin>
 		</plugins>
 	</build>
 

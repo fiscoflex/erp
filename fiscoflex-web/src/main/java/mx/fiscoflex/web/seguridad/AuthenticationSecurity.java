@@ -6,7 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
-import mx.fiscoflex.exception.ApiException;
+
+
+
+
+
+
+
+
+import mx.fiscoflex.erp.api.error.ApiException;
 
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpStatus;
