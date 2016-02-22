@@ -13,10 +13,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.transaction.UserTransaction;
 
-import mx.fiscoflex.contabilidad.basedatos.contabilidad.CuentaContable;
-import mx.fiscoflex.contabilidad.basedatos.contabilidad.CuentaContableRepository;
 import mx.fiscoflex.contabilidad.cuentacontable.CuentaContableDTO;
-import mx.fiscoflex.contabilidad.exception.BusinessException;
+import mx.fiscoflex.contabilidad.persistencia.CuentaContableEntity;
+import mx.fiscoflex.contabilidad.persistencia.CuentaContableRepository;
 
 @Stateless
 @TransactionManagement(value = TransactionManagementType.BEAN)
@@ -34,7 +33,7 @@ public class CuentaContableService {
 	 * @param cuentaContableDTO
 	 */
 	public void crearCuentaContable(CuentaContableDTO cuentaContableDTO) {
-		CuentaContable cuentaContableEntity = new CuentaContable();
+		CuentaContableEntity cuentaContableEntity = new CuentaContableEntity();
 		UserTransaction utx = context.getUserTransaction();
 		try {
 			utx.begin();
@@ -48,7 +47,7 @@ public class CuentaContableService {
 			cuentaContableQuery.guardarCuentaContable(cuentaContableEntity);
 			utx.commit();
 		} catch (PersistenceException ex) {
-			throw new BusinessException("Error al crear una cuenta contable.");
+			//throw new BusinessException("Error al crear una cuenta contable.");
 		} catch (Exception ex) {
 			try {
 				utx.rollback();
@@ -64,7 +63,7 @@ public class CuentaContableService {
 	 * @param cuentaContableDTO
 	 */
 	public void actualizarCuentaContable(CuentaContableDTO cuentaContableDTO) {
-		CuentaContable cuentaContableEntity = new CuentaContable();
+		CuentaContableEntity cuentaContableEntity = new CuentaContableEntity();
 		UserTransaction utx = context.getUserTransaction();
 		try {
 			utx.begin();
@@ -99,7 +98,7 @@ public class CuentaContableService {
 		try {
 
 			utx.begin();
-			CuentaContable cuentaContableEntity = cuentaContableQuery.obtenerCuentaContableporId(id);
+			CuentaContableEntity cuentaContableEntity = cuentaContableQuery.obtenerCuentaContableporId(id);
 			cuentaContableDTO.setIdCuentaContable(cuentaContableEntity.getIdCuentaContable());
 			cuentaContableDTO.setNombreCuenta(cuentaContableEntity.getNombreCuenta());
 			cuentaContableDTO.setCuentaPadre(cuentaContableEntity.getCuentaPadre());
@@ -110,7 +109,7 @@ public class CuentaContableService {
 			utx.commit();
 			return cuentaContableDTO;
 		} catch (NoResultException ex) {
-			throw new BusinessException("No se encontraron resultados.");
+		//	throw new BusinessException("No se encontraron resultados.");
 		} catch (Exception ex) {
 			try {
 				utx.rollback();
@@ -131,14 +130,14 @@ public class CuentaContableService {
 		UserTransaction utx = context.getUserTransaction();
 		try {
 			utx.begin();
-			List<CuentaContable> listaCuentaEntities = cuentaContableQuery.obtenerCuentas();
-			for (CuentaContable cuenta : listaCuentaEntities) {
+			List<CuentaContableEntity> listaCuentaEntities = cuentaContableQuery.obtenerCuentas();
+			for (CuentaContableEntity cuenta : listaCuentaEntities) {
 				listCuentaDTO.add(loadBranch(cuenta));
 			}
 			utx.commit();
 			return listCuentaDTO;
 		} catch (NoResultException ex) {
-			throw new BusinessException("No se encontraron resultados.");
+		//	throw new BusinessException("No se encontraron resultados.");
 		} catch (Exception ex) {
 			try {
 				utx.rollback();
@@ -149,7 +148,7 @@ public class CuentaContableService {
 		return listCuentaDTO;
 	}
 
-	private CuentaContableDTO loadBranch(CuentaContable cuenta) {
+	private CuentaContableDTO loadBranch(CuentaContableEntity cuenta) {
 		CuentaContableDTO cuentaContableDTO = new CuentaContableDTO();
 		cuentaContableDTO.setIdCuentaContable(cuenta.getIdCuentaContable());
 		cuentaContableDTO.setNombreCuenta(cuenta.getNombreCuenta());
@@ -159,7 +158,7 @@ public class CuentaContableService {
 		cuentaContableDTO.setOrigen(cuenta.getOrigen());
 		cuentaContableDTO.setProfundidad(cuenta.getProfundidad());
 		List<CuentaContableDTO> listCuentaDTO = new ArrayList<CuentaContableDTO>();
-		for (CuentaContable subcuenta : cuenta.getCuentas()) {
+		for (CuentaContableEntity subcuenta : cuenta.getCuentas()) {
 			listCuentaDTO.add(loadBranch(subcuenta));
 		}
 		cuentaContableDTO.setCuentas(listCuentaDTO);
@@ -173,7 +172,7 @@ public class CuentaContableService {
 			cuentaContableQuery.borrarCuentaContable(id);
 			utx.commit();
 		} catch (NoResultException ex) {
-			throw new BusinessException("No exite el registro");
+		//	throw new BusinessException("No exite el registro");
 		} catch (Exception ex) {
 			try {
 				utx.rollback();

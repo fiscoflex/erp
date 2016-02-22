@@ -3,9 +3,10 @@ package mx.fiscoflex.contabilidad.seguridad.usuario;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import mx.fiscoflex.contabilidad.basedatos.contabilidad.Usuario;
-import mx.fiscoflex.contabilidad.basedatos.contabilidad.UsuarioRepository;
-import mx.fiscoflex.contabilidad.seguridad.bitacora.BitacoraDTO;
+import mx.fiscoflex.contabilidad.persistencia.UsuarioEntity;
+import mx.fiscoflex.contabilidad.persistencia.UsuarioRepository;
+import mx.fiscoflex.contabilidad.seguridad.autenticacion.ContextoSeguridad;
+import mx.fiscoflex.contabilidad.seguridad.bitacora.Bitacora;
 import mx.fiscoflex.contabilidad.seguridad.bitacora.BitacoraService;
 import mx.fiscoflex.contabilidad.util.Crypto;
 
@@ -21,11 +22,11 @@ public class UsuarioService {
 		return null;
 	}
 	
-	public void registrarUsuario(RegistrarUsuarioDTO registrarUsuarioDTO, UsuarioDTO usuarioDTO) {
+	public void registrarUsuario(RegistrarUsuarioDTO registrarUsuarioDTO, ContextoSeguridad sesionDTO) {
 		
 		
 		
-		BitacoraDTO bitacoraDTO = new BitacoraDTO();
+		Bitacora bitacoraDTO = new Bitacora();
 		
 	}
 	
@@ -35,9 +36,9 @@ public class UsuarioService {
 	}
 	
 	public void crearUsuario(ResumenUsuarioDTO usuario) {
-		Usuario usuarioEntity = new Usuario();
+		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		usuarioEntity.setIdUsuario(usuario.getIdUsuario());
-		usuarioEntity.setNombre(usuario.getNombre());
+		usuarioEntity.setNombreUsuario(usuario.getNombre());
 		usuarioEntity.setEmail(usuario.getEmail());
 		usuarioEntity.setPassword(Crypto.hmac(usuario.getPassword()));
 		usuarioEntity.setActivo(usuario.getActivo());
@@ -47,7 +48,7 @@ public class UsuarioService {
 
 	public void cambiar(CambiarPasswordDTO cambioPasswordDTO) {
 		
-		Usuario usuario = usuarioRepository.usuarioPorNombre(cambioPasswordDTO.getNombreUsuario());
+		UsuarioEntity usuario = usuarioRepository.usuarioPorNombre(cambioPasswordDTO.getNombreUsuario());
 		
 		String hashPassword = Crypto.hmac(cambioPasswordDTO.getNuevoPassword());		
 		usuario.setPassword(hashPassword);
